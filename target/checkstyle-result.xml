@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="13.7.0">
+<file name="C:\Users\nikit\OneDrive - TU Eindhoven\Documents\NetBeansProjects\mini-metro\src\main\java\com\mycompany\mini\metro\MiniMetro.java">
+<error line="2" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="12" column="1" severity="warning" message="&apos;CLASS_DEF&apos; should be separated from previous line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
+</file>
+<file name="C:\Users\nikit\OneDrive - TU Eindhoven\Documents\NetBeansProjects\mini-metro\src\main\java\com\mycompany\mini\metro\MiniMetroGUI.java">
+<error line="2" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="5" column="1" severity="warning" message="&apos;package&apos; should be separated from previous line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
+<error line="13" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="13" column="51" severity="warning" message="Rename constant &apos;logger&apos; according to the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"/>
+<error line="69" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="70" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="71" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="72" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="73" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="86" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="98" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="117" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="119" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="127" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="128" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="133" column="5" severity="warning" message="Use spaces according to the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="135" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="139" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="139" column="18" severity="warning" message="Rename method &apos;jToggleButton1ActionPerformed&apos; according to the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck"/>
+<error line="147" column="40" severity="warning" message="Array brackets at illegal position." source="com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck"/>
+<error line="150" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="154" severity="warning" message="Line is longer than 100 characters. Split it into multiple lines to comply with the 2IP90 coding standard." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+</checkstyle>
