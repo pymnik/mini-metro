@@ -4,6 +4,7 @@
 
 package com.mycompany.mini.metro;
 
+import com.formdev.flatlaf.FlatLightLaf;
 /**
  *
  * @author nikit
@@ -11,6 +12,7 @@ package com.mycompany.mini.metro;
 public class MiniMetro {
 
     public static void main(String[] args) {
+        FlatLightLaf.setup();
         MiniMetroGUI gui = new MiniMetroGUI();
         gui.setLocationRelativeTo(null);
         gui.setVisible(true);
