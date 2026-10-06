@@ -1,10 +1,10 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.mycompany.mini.metro;
 
 import com.formdev.flatlaf.FlatLightLaf;
+
 /**
  *
  * @author nikit
