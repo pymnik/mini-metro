@@ -8,15 +8,23 @@ package com.mycompany.mini.metro;
  *
  * @author nikit
  */
+
 public class MiniMetroGUI extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MiniMetroGUI.class.getName());
+    private java.awt.image.BufferedImage background;
 
     /**
      * Creates new form MiniMetroGUI
      */
     public MiniMetroGUI() {
         initComponents();
+// loading image into memory. Read the file we give it, stored in background, try catch so broken file doesnt break game
+        try {
+            background = javax.imageio.ImageIO.read(getClass().getResource("/BackgroundMap.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -28,83 +36,230 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        btnStart = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jPanel2 = new javax.swing.JPanel();
+        buttonGroupLines = new javax.swing.ButtonGroup();
+        MenuPanel = new javax.swing.JPanel();
+        Titel = new javax.swing.JLabel();
+        Simulation = new javax.swing.JLabel();
+        Resume = new javax.swing.JButton();
+        Restart = new javax.swing.JButton();
+        Speed2x = new javax.swing.JButton();
+        Lines = new javax.swing.JLabel();
+        Line1 = new javax.swing.JToggleButton();
+        Line2 = new javax.swing.JToggleButton();
+        Line3 = new javax.swing.JToggleButton();
+        AddTrain = new javax.swing.JButton();
+        RemoveTrain = new javax.swing.JButton();
+        ClearLine = new javax.swing.JButton();
+        Statistics = new javax.swing.JLabel();
+        Time = new javax.swing.JLabel();
+        Delivered = new javax.swing.JLabel();
+        Waiting = new javax.swing.JLabel();
+        OnTrains = new javax.swing.JLabel();
+        AvgTrip = new javax.swing.JLabel();
+        NewPassenger = new javax.swing.JLabel();
+        MostCrowded = new javax.swing.JLabel();
+        GamePanel = 
+        GamePanel 
+
+        = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Graphics2D g2 = (java.awt.Graphics2D) g;
+
+                if (background != null) {
+                    g2.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+                }
+            }
+        };
+        // drawing the image, put into custom code so when
+        // we have worldstate the background is drawn first
+        ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mini Metro");
         setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(1200, 800));
+        setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, null));
+        MenuPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setText("Build the metro");
+        Titel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Titel.setText("Mini Metro");
 
-        buttonGroup1.add(jToggleButton1);
-        jToggleButton1.setText("Line 1");
-        jToggleButton1.addActionListener(this::jToggleButton1ActionPerformed);
+        Simulation.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        Simulation.setText("Simulation:");
 
-        buttonGroup1.add(jToggleButton2);
-        jToggleButton2.setText("Line 2");
+        Resume.setText("Resume");
+        Resume.addActionListener(this::ResumeActionPerformed);
 
-        buttonGroup1.add(jToggleButton3);
-        jToggleButton3.setText("Line 3");
+        Restart.setText("Restart");
 
-        btnStart.setText("Start");
-        btnStart.addActionListener(this::btnStartActionPerformed);
+        Speed2x.setText("Speed 2x");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnStart)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator1))
+        Lines.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        Lines.setText("Lines:");
+
+        buttonGroupLines.add(Line1);
+        Line1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red_pill(1).png"))); // NOI18N
+        Line1.setText("Line 1");
+        Line1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Line1.setIconTextGap(5);
+
+        buttonGroupLines.add(Line2);
+        Line2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yellow_pill(1).png"))); // NOI18N
+        Line2.setText("Line 2");
+        Line2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Line2.setIconTextGap(5);
+        Line2.addActionListener(this::Line2ActionPerformed);
+
+        buttonGroupLines.add(Line3);
+        Line3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blue_pill(1).png"))); // NOI18N
+        Line3.setText("Line 3");
+        Line3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Line3.setIconTextGap(5);
+
+        AddTrain.setText("Add Train");
+
+        RemoveTrain.setText("Remove Train");
+        RemoveTrain.addActionListener(this::RemoveTrainActionPerformed);
+
+        ClearLine.setText("Clear Line");
+
+        Statistics.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        Statistics.setForeground(new java.awt.Color(102, 102, 102));
+        Statistics.setText("STATISTICS");
+
+        Time.setForeground(new java.awt.Color(102, 102, 102));
+        Time.setText("Time");
+
+        Delivered.setForeground(new java.awt.Color(102, 102, 102));
+        Delivered.setText("Delivered");
+
+        Waiting.setForeground(new java.awt.Color(102, 102, 102));
+        Waiting.setText("Waiting");
+
+        OnTrains.setForeground(new java.awt.Color(102, 102, 102));
+        OnTrains.setText("On trains");
+
+        AvgTrip.setForeground(new java.awt.Color(102, 102, 102));
+        AvgTrip.setText("Avg. trip");
+
+        NewPassenger.setForeground(new java.awt.Color(102, 102, 102));
+        NewPassenger.setText("New passenger");
+
+        MostCrowded.setForeground(new java.awt.Color(102, 102, 102));
+        MostCrowded.setText("Most crowded");
+
+        javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
+        MenuPanel.setLayout(MenuPanelLayout);
+        MenuPanelLayout.setHorizontalGroup(
+            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuPanelLayout.createSequentialGroup()
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Line1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(MenuPanelLayout.createSequentialGroup()
+                                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                                        .addComponent(AddTrain, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(RemoveTrain, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Line2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Line3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Statistics))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ClearLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(Titel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(MenuPanelLayout.createSequentialGroup()
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Delivered, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Waiting, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(OnTrains)
+                            .addComponent(AvgTrip)
+                            .addComponent(NewPassenger)
+                            .addComponent(MostCrowded)))
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(Simulation, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MenuPanelLayout.createSequentialGroup()
+                                .addComponent(Resume)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Restart)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Speed2x))
+                            .addComponent(Lines, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        MenuPanelLayout.setVerticalGroup(
+            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(Titel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Simulation)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton1)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Resume)
+                    .addComponent(Restart)
+                    .addComponent(Speed2x))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton2)
+                .addComponent(Lines)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton3)
+                .addComponent(Line1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnStart)
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addComponent(Line2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Line3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddTrain)
+                    .addComponent(RemoveTrain))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ClearLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Statistics)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Time)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Delivered, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Waiting, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(OnTrains, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AvgTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NewPassenger, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(MostCrowded, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        GamePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 287, Short.MAX_VALUE)
+        javax.swing.GroupLayout GamePanelLayout = new javax.swing.GroupLayout(GamePanel);
+        GamePanel.setLayout(GamePanelLayout);
+        GamePanelLayout.setHorizontalGroup(
+            GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 748, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        GamePanelLayout.setVerticalGroup(
+            GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -112,34 +267,37 @@ public class MiniMetroGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(GamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+    private void ResumeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnStartActionPerformed
+    }//GEN-LAST:event_ResumeActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void RemoveTrainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveTrainActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_RemoveTrainActionPerformed
+
+    private void Line2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Line2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Line2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,14 +325,28 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnStart;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JButton AddTrain;
+    private javax.swing.JLabel AvgTrip;
+    private javax.swing.JButton ClearLine;
+    private javax.swing.JLabel Delivered;
+    private javax.swing.JPanel GamePanel;
+    private javax.swing.JToggleButton Line1;
+    private javax.swing.JToggleButton Line2;
+    private javax.swing.JToggleButton Line3;
+    private javax.swing.JLabel Lines;
+    private javax.swing.JPanel MenuPanel;
+    private javax.swing.JLabel MostCrowded;
+    private javax.swing.JLabel NewPassenger;
+    private javax.swing.JLabel OnTrains;
+    private javax.swing.JButton RemoveTrain;
+    private javax.swing.JButton Restart;
+    private javax.swing.JButton Resume;
+    private javax.swing.JLabel Simulation;
+    private javax.swing.JButton Speed2x;
+    private javax.swing.JLabel Statistics;
+    private javax.swing.JLabel Time;
+    private javax.swing.JLabel Titel;
+    private javax.swing.JLabel Waiting;
+    private javax.swing.ButtonGroup buttonGroupLines;
     // End of variables declaration//GEN-END:variables
 }
