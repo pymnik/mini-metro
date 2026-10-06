@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-import javax.swing.UIManager;
 
 /**
  *
@@ -59,19 +58,5 @@ public class MiniMetro {
             });
             timer.start();
         });
-    }
-
-    /** The same look the GUI builder used (moved here from MiniMetroGUI's old main). */
-    private static void useNimbusLook() {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            // Nimbus not available: keep the default look
-        }
     }
 }

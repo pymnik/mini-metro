@@ -37,42 +37,52 @@ public class Renderer extends JPanel {
     }
 
     public void handleClick(int x, int y) {
-        return;
+        mechanics.addStationToLine(0, mechanics.findStationAt(x, y));
     }
 
     // This paints the scene each time repaint() is called
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g); // erase previous picture
-        drawLines(g);
-        drawStations(g);
-        drawText(g);
+        
+        Graphics2D g2 = (Graphics2D) g;
+        // smooth edges for shapes and lines
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        // smooth text
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        // draw strokes at their exact (decimal) position instead of rounding to pixels
+        g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,
+                RenderingHints.VALUE_STROKE_PURE);
+        
+        drawLines(g2);
+        drawStations(g2);
+        drawText(g2);
     }
 
-    private void drawLines(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(6));
+    private void drawLines(Graphics2D g2) {
+        g2.setStroke(new BasicStroke(6, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 
         for (MetroLine line : world.getLines()) {
-            g.setColor(lineColors[line.getNumber()]);
-            for (int i = 0; i < line.getRoute().size(); i++) {
+            g2.setColor(lineColors[line.getNumber()]);
+            for (int i = 0; i < line.getRoute().size() - 1; i++) {
                 Station a = line.getRoute().get(i);
                 Station b = line.getRoute().get(i + 1);
-                g.drawLine((int) a.getX(), (int) a.getY(),
+                g2.drawLine((int) a.getX(), (int) a.getY(),
                         (int) b.getX(), (int) b.getY());
             }
         }
     }
 
-    private void drawStations(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
+    private void drawStations(Graphics2D g2) {
         for (Station station : world.getStations()) {
             StationShape shape = station.getShape();
             double x = station.getX();
             double y = station.getY();
             double sizeShape = mechanics.getStationSize();
 
-            draw(g2, shape, x, y, sizeShape, Color.WHITE, Color.BLACK, 6);
+            draw(g2, shape, x, y, sizeShape, Color.WHITE, Color.BLACK, 4);
         }
 
     }
@@ -117,12 +127,12 @@ public class Renderer extends JPanel {
         }
     }
 
-    private void drawText(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
+    private void drawText(Graphics2D g2) {
         for (Station station : world.getStations()) {
             g2.setColor(Color.BLACK);
             g2.setFont(new Font("Segoe UI", Font.BOLD, 14));
-            g2.drawString(station.getName(), (int) station.getX(),
+            g2.drawString(station.getName(),
+                    (int) station.getX() - mechanics.getStationSize() + 3,
                     (int) station.getY() + mechanics.getStationSize() + 10);
         }
     }
