@@ -4,59 +4,74 @@
 package com.mycompany.mini.metro;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
+import javax.swing.UIManager;
 
 /**
  *
  * @author nikit
  */
 public class MiniMetro {
-
     public static void main(String[] args) {
-        FlatLightLaf.setup();
-        MiniMetroGUI gui = new MiniMetroGUI();
-        gui.setLocationRelativeTo(null);
-        gui.setVisible(true);
 
-        Station ams = new Station(StationShape.CIRCLE, "ÄMS", 100.0, 150.0);
-        Station eind = new Station(StationShape.SQUARE, "EIND", 50.0, 400.0);
+        SwingUtilities.invokeLater(() -> {
+            FlatLightLaf.setup();
+            
+            // 1. Memory and logic
+            WorldState world = new WorldState();
+            Mechanics mechanics = new Mechanics(world);
 
-        Passenger a = new Passenger(StationShape.SQUARE);
-        Passenger b = new Passenger(StationShape.CIRCLE);
+            // 2. GUI: the window from the builder + the renderer
+            MiniMetroGUI frame = new MiniMetroGUI();
+            Renderer renderer = new Renderer(world, mechanics);
 
-        ams.addPassenger(a);
-        eind.addPassenger(b);
+            // 3. Put the renderer inside GamePanel, on top of the background map
+            JPanel gamePanel = frame.getGamePanel();
+            gamePanel.setLayout(new BorderLayout());
+            gamePanel.add(renderer, BorderLayout.CENTER);
 
-        System.out.println(ams.toString());
-        System.out.println(eind.toString());
-        System.out.println("First passenger at ams wants to:" + ams.getWaiting().get(0).getDestination());
+            // 4. Connect the buttons
+//            frame.getLine1Button().addActionListener(e -> renderer.setSelectedLine(0));
+//            frame.getLine2Button().addActionListener(e -> renderer.setSelectedLine(1));
+//            frame.getLine3Button().addActionListener(e -> renderer.setSelectedLine(2));
 
-//        WorldState s = new WorldState();
-//        Mechanics m = new Mechanics(s);
-//        Renderer r = new Renderer(s, m); // Draw state. Call m.addTrain on button press.
-//        
-//        Timer t = new Timer(20, e -> {
-    
+            // 5. Show the window
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
 
-////            System.out.println(e);
-//            m.update();
-//            r.repaint();
-//        })
+            // 6. Game loop: update the rules, then redraw, about 60 times per second
+            Timer timer = new Timer(16, new ActionListener() {
+                private long last = System.nanoTime();
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    long now = System.nanoTime();
+                    double dt = (now - last) / 1_000_000_000.0;
+                    last = now;
+                    mechanics.update(dt);
+                    renderer.repaint();
+                }
+            });
+            timer.start();
+        });
+    }
+
+    /** The same look the GUI builder used (moved here from MiniMetroGUI's old main). */
+    private static void useNimbusLook() {
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // Nimbus not available: keep the default look
+        }
     }
 }
-
-//class WorldState() {
-//    ArrayList<Train> trains;
-//    ArrayList<Passenger> passengers;
-//}
-//
-//class Mechanics {
-//    public Mechanics(WorldState s) {
-//        this.s = s;
-//    }
-//    
-//    public void update() {
-//        // Update positions, randomly add passengers.
-//        long currTime = System.nanoseconds();
-//        long deltaTime = currTime - previousTime;
-//    }
-//}

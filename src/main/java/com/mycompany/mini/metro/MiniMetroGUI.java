@@ -8,7 +8,6 @@ package com.mycompany.mini.metro;
  *
  * @author nikit
  */
-
 public class MiniMetroGUI extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MiniMetroGUI.class.getName());
@@ -79,7 +78,6 @@ public class MiniMetroGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mini Metro");
         setMinimumSize(null);
-        setPreferredSize(new java.awt.Dimension(1200, 800));
         setResizable(false);
 
         MenuPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -102,9 +100,11 @@ public class MiniMetroGUI extends javax.swing.JFrame {
 
         buttonGroupLines.add(Line1);
         Line1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red_pill(1).png"))); // NOI18N
+        Line1.setSelected(true);
         Line1.setText("Line 1");
         Line1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Line1.setIconTextGap(5);
+        Line1.addActionListener(this::Line1ActionPerformed);
 
         buttonGroupLines.add(Line2);
         Line2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yellow_pill(1).png"))); // NOI18N
@@ -299,30 +299,29 @@ public class MiniMetroGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Line2ActionPerformed
 
+    private void Line1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Line1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Line1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MiniMetroGUI().setVisible(true));
+    public javax.swing.JPanel getGamePanel() {
+        return GamePanel;
     }
+
+    public javax.swing.JToggleButton getLine1Button() {
+        return Line1;
+    }
+
+    public javax.swing.JToggleButton getLine2Button() {
+        return Line2;
+    }
+
+    public javax.swing.JToggleButton getLine3Button() {
+        return Line3;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddTrain;

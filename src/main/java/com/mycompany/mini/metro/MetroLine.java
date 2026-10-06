@@ -40,8 +40,8 @@ public class MetroLine {
         return this.route;
     }
 
-    public boolean contains(StationShape shape) {
-        if (route.contains(shape)) {
+    public boolean contains(Station station) {
+        if (route.contains(station)) {
             return true;
         } else {
             return false;

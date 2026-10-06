@@ -15,7 +15,8 @@ import javax.swing.*;
  */
 public class Renderer extends JPanel {
 
-    private Color[] lineColors = {new Color(0xE03134), new Color(0x1678D1), new Color(0xF6BF16)};
+    private final Color[] lineColors = {new Color(0xE03134),
+        new Color(0x1678D1),new Color(0xF6BF16)};
     private WorldState world;
     private Mechanics mechanics;
     private int selectedLine;
@@ -24,7 +25,8 @@ public class Renderer extends JPanel {
         this.world = world;
         this.mechanics = mechanics;
         setFocusable(true);
-
+        setOpaque(false);
+        
         // On mouse press call handleClick
         addMouseListener(new MouseAdapter() {
             @Override
@@ -75,7 +77,8 @@ public class Renderer extends JPanel {
 
     }
 
-    public static void draw(Graphics2D g, StationShape type, double cx, double cy,
+    public static void draw(Graphics2D g, StationShape type, double cx,
+            double cy,
             double size, Color fill, Color outline, float strokeWidth) {
         Shape shape = createShape(type, cx, cy, size);
         g.setColor(fill);
@@ -86,7 +89,8 @@ public class Renderer extends JPanel {
     }
 
     //create a certain shape so it can be drawn
-    public static Shape createShape(StationShape type, double cx, double cy, double size) {
+    public static Shape createShape(StationShape type, double cx, double cy,
+            double size) {
         double r = size / 2;
         switch (type) {
             case CIRCLE:
@@ -115,10 +119,11 @@ public class Renderer extends JPanel {
 
     private void drawText(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        for(Station station : world.getStations()){
+        for (Station station : world.getStations()) {
             g2.setColor(Color.BLACK);
             g2.setFont(new Font("Segoe UI", Font.BOLD, 14));
-            g2.drawString(station.getName(), (int)station.getX(), (int)station.getY() + mechanics.getStationSize() + 10);
+            g2.drawString(station.getName(), (int) station.getX(),
+                    (int) station.getY() + mechanics.getStationSize() + 10);
         }
     }
 }

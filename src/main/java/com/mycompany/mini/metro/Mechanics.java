@@ -15,14 +15,16 @@ import java.util.List;
 public class Mechanics {
 
     private double spawnInterval = 2.0;
+    private double spawnTimer = 1.0;
     private int stationCapacity = 6;
     private int stationRadius = 20;
     private WorldState world;
-    private List<Station> stations = world.getStations();
+    private List<Station> stations;
     private Random random = new Random();
 
     public Mechanics(WorldState world) {
         this.world = world;
+        this.stations = world.getStations();
     }
 
     public void update(double dt) {
@@ -31,9 +33,11 @@ public class Mechanics {
         }
 
         world.changeElapsed(dt);
-        if (spawnInterval - dt <= 0) {
+        spawnTimer -= dt;
+        if (spawnTimer <= 0) {
             spawnPassenger();
             spawnInterval *= 0.999; //spawn faster overtime
+            spawnTimer = spawnInterval;
         }
 
         for (Station station : stations) {
@@ -61,7 +65,7 @@ public class Mechanics {
             return "Game over.";
         }
         MetroLine line = world.getLines().get(lineIndex);
-        if (line.contains(station.getShape())) {
+        if (line.contains(station)) {
             return station.getName() + " is already on line " + (lineIndex + 1) + ".";
         }
         line.addStation(station);
