@@ -77,4 +77,7 @@ public class Mechanics {
         }
         return null;
     }
+    public int getStationSize(){
+        return this.stationRadius;
+    }
 }

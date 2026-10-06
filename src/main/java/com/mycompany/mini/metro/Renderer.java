@@ -56,16 +56,23 @@ public class Renderer extends JPanel {
             for (int i = 0; i < line.getRoute().size(); i++) {
                 Station a = line.getRoute().get(i);
                 Station b = line.getRoute().get(i + 1);
-                g.drawLine((int)a.getX(), (int)a.getY(),
-                        (int)b.getX(), (int)b.getY());
+                g.drawLine((int) a.getX(), (int) a.getY(),
+                        (int) b.getX(), (int) b.getY());
             }
         }
     }
-    
-    private void drawStations(Graphics g){
+
+    private void drawStations(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        
-        
+        for (Station station : world.getStations()) {
+            StationShape shape = station.getShape();
+            double x = station.getX();
+            double y = station.getY();
+            double sizeShape = mechanics.getStationSize();
+
+            draw(g2, shape, x, y, sizeShape, Color.WHITE, Color.BLACK, 6);
+        }
+
     }
 
     public static void draw(Graphics2D g, StationShape type, double cx, double cy,
@@ -87,15 +94,31 @@ public class Renderer extends JPanel {
             case SQUARE:
                 return new Rectangle2D.Double(cx - r, cy - r, size, size);
             case TRIANGLE:
-                return null; //Lasse add these papi
+                Path2D t = new Path2D.Double();
+                t.moveTo(cx, cy - r);        // top corner
+                t.lineTo(cx + r, cy + r);    // bottom right
+                t.lineTo(cx - r, cy + r);    // bottom left
+                t.closePath();               // back to the top
+                return t;
             case DIAMOND:
-                return null;
+                Path2D d = new Path2D.Double();
+                d.moveTo(cx, cy - r);        // top
+                d.lineTo(cx + r, cy);        // right
+                d.lineTo(cx, cy + r);        // bottom
+                d.lineTo(cx - r, cy);        // left
+                d.closePath();               // back to the top
+                return d;
             default:
                 throw new IllegalArgumentException("Unkown type: " + type);
         }
     }
-    
-    private void drawText(Graphics g){
-        return;
+
+    private void drawText(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        for(Station station : world.getStations()){
+            g2.setColor(Color.BLACK);
+            g2.setFont(new Font("Segoe UI", Font.BOLD, 14));
+            g2.drawString(station.getName(), (int)station.getX(), (int)station.getY() + mechanics.getStationSize() + 10);
+        }
     }
 }
