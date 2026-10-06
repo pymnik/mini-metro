@@ -4,10 +4,98 @@
  */
 package com.mycompany.mini.metro;
 
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.geom.*;
+import javax.swing.*;
+
 /**
  *
  * @author nikit
  */
-public class Renderer {
+public class Renderer extends JPanel {
 
+    private Color[] lineColors = {new Color(0xE03134), new Color(0x1678D1), new Color(0xF6BF16)};
+    private WorldState world;
+    private Mechanics mechanics;
+    private int selectedLine;
+
+    public Renderer(WorldState world, Mechanics mechanics) {
+        this.world = world;
+        this.mechanics = mechanics;
+        setFocusable(true);
+
+        // On mouse press call handleClick
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                handleClick(e.getX(), e.getY());
+            }
+        });
+    }
+
+    public void handleClick(int x, int y) {
+        return;
+    }
+
+    // This paints the scene each time repaint() is called
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g); // erase previous picture
+        drawLines(g);
+        drawStations(g);
+        drawText(g);
+    }
+
+    private void drawLines(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(6));
+
+        for (MetroLine line : world.getLines()) {
+            g.setColor(lineColors[line.getNumber()]);
+            for (int i = 0; i < line.getRoute().size(); i++) {
+                Station a = line.getRoute().get(i);
+                Station b = line.getRoute().get(i + 1);
+                g.drawLine((int)a.getX(), (int)a.getY(),
+                        (int)b.getX(), (int)b.getY());
+            }
+        }
+    }
+    
+    private void drawStations(Graphics g){
+        Graphics2D g2 = (Graphics2D) g;
+        
+        
+    }
+
+    public static void draw(Graphics2D g, StationShape type, double cx, double cy,
+            double size, Color fill, Color outline, float strokeWidth) {
+        Shape shape = createShape(type, cx, cy, size);
+        g.setColor(fill);
+        g.fill(shape);
+        g.setColor(outline);
+        g.setStroke(new BasicStroke(strokeWidth));
+        g.draw(shape);
+    }
+
+    //create a certain shape so it can be drawn
+    public static Shape createShape(StationShape type, double cx, double cy, double size) {
+        double r = size / 2;
+        switch (type) {
+            case CIRCLE:
+                return new Ellipse2D.Double(cx - r, cy - r, size, size);
+            case SQUARE:
+                return new Rectangle2D.Double(cx - r, cy - r, size, size);
+            case TRIANGLE:
+                return null; //Lasse add these papi
+            case DIAMOND:
+                return null;
+            default:
+                throw new IllegalArgumentException("Unkown type: " + type);
+        }
+    }
+    
+    private void drawText(Graphics g){
+        return;
+    }
 }

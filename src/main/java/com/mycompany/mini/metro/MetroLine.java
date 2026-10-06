@@ -35,6 +35,10 @@ public class MetroLine {
     public void clearRoute() {
         this.route.clear();
     }
+    
+    public List<Station> getRoute(){
+        return this.route;
+    }
 
     public boolean contains(StationShape shape) {
         if (route.contains(shape)) {

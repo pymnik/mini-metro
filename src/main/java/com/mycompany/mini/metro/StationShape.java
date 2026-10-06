@@ -9,5 +9,5 @@ package com.mycompany.mini.metro;
  * @author nikit
  */
 public enum StationShape {
-    CIRCLE, TRIANGLE, SQUARE, STAR
+    CIRCLE, TRIANGLE, SQUARE, DIAMOND
 }
