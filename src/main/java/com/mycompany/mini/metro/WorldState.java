@@ -19,7 +19,7 @@ public class WorldState {
     private long elapsed = System.nanoTime();
 
     public WorldState() {
-        stations.add(new Station(StationShape.STAR, "AMS", 300.0, 150.0));
+        stations.add(new Station(StationShape.DIAMOND, "AMS", 300.0, 150.0));
         stations.add(new Station(StationShape.CIRCLE, "EIND", 200.0, 400.0));
 
         for (int i = 0; i < 3; i++) {
