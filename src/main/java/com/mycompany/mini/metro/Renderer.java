@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,6 +22,7 @@ public class Renderer extends JPanel {
     private WorldState world;
     private Mechanics mechanics;
     private int selectedLine;
+    private int passengerRadius = 5;
 
     public Renderer(WorldState world, Mechanics mechanics) {
         this.world = world;
@@ -63,6 +66,7 @@ public class Renderer extends JPanel {
         drawLines(g2);
         drawStations(g2);
         drawText(g2);
+        drawPassengers(g2);
     }
 
     private void drawLines(Graphics2D g2) {
@@ -138,6 +142,22 @@ public class Renderer extends JPanel {
             g2.drawString(station.getName(),
                     (int) station.getX() - mechanics.getStationSize() + 3,
                     (int) station.getY() + mechanics.getStationSize() + 10);
+        }
+    }
+
+    private void drawPassengers(Graphics2D g2) {
+        for (int i = 0; i < world.getStations().size(); i++) {
+            Station station = world.getStationById(i);
+            List<Passenger> waiting = station.getWaiting();
+            for (int j = 0; j < waiting.size(); j++) {
+                draw(g2, waiting.get(j).getDestination(), 
+                        station.getX() + (8 * (j + 2)),
+                        station.getY() - 5, 
+                        4.0, 
+                        Color.DARK_GRAY,
+                        Color.DARK_GRAY, 
+                        2);
+            }
         }
     }
 }
