@@ -16,7 +16,7 @@ import javax.swing.*;
 public class Renderer extends JPanel {
 
     private final Color[] lineColors = {new Color(0xE03134),
-        new Color(0x1678D1),new Color(0xF6BF16)};
+        new Color(0xF6BF16), new Color(0x1678D1)};
     private WorldState world;
     private Mechanics mechanics;
     private int selectedLine;
@@ -26,7 +26,7 @@ public class Renderer extends JPanel {
         this.mechanics = mechanics;
         setFocusable(true);
         setOpaque(false);
-        
+
         // On mouse press call handleClick
         addMouseListener(new MouseAdapter() {
             @Override
@@ -37,14 +37,18 @@ public class Renderer extends JPanel {
     }
 
     public void handleClick(int x, int y) {
-        mechanics.addStationToLine(0, mechanics.findStationAt(x, y));
+        mechanics.addStationToLine(this.selectedLine, mechanics.findStationAt(x, y));
+    }
+
+    public void setSelectedLine(int i) {
+        this.selectedLine = i;
     }
 
     // This paints the scene each time repaint() is called
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g); // erase previous picture
-        
+
         Graphics2D g2 = (Graphics2D) g;
         // smooth edges for shapes and lines
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -55,7 +59,7 @@ public class Renderer extends JPanel {
         // draw strokes at their exact (decimal) position instead of rounding to pixels
         g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,
                 RenderingHints.VALUE_STROKE_PURE);
-        
+
         drawLines(g2);
         drawStations(g2);
         drawText(g2);

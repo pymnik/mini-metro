@@ -21,6 +21,7 @@ public class WorldState {
     public WorldState() {
         stations.add(new Station(StationShape.DIAMOND, "AMS", 350.0, 250.0));
         stations.add(new Station(StationShape.CIRCLE, "EIND", 430.0, 440.0));
+        stations.add(new Station(StationShape.TRIANGLE, "GRO", 540.0, 100.0));
 
         for (int i = 0; i < 3; i++) {
             lines.add(new MetroLine(i));

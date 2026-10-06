@@ -35,9 +35,9 @@ public class MiniMetro {
             gamePanel.add(renderer, BorderLayout.CENTER);
 
             // 4. Connect the buttons
-//            frame.getLine1Button().addActionListener(e -> renderer.setSelectedLine(0));
-//            frame.getLine2Button().addActionListener(e -> renderer.setSelectedLine(1));
-//            frame.getLine3Button().addActionListener(e -> renderer.setSelectedLine(2));
+            frame.getLine1Button().addActionListener(e -> renderer.setSelectedLine(0));
+            frame.getLine2Button().addActionListener(e -> renderer.setSelectedLine(1));
+            frame.getLine3Button().addActionListener(e -> renderer.setSelectedLine(2));
 
             // 5. Show the window
             frame.setLocationRelativeTo(null);
