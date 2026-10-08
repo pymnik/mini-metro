@@ -49,6 +49,10 @@ public class Station {
     public void addPassenger(Passenger passenger) {
         waiting.add(passenger);
     }
+    
+    public void removePassenger (Passenger passenger){
+        waiting.remove(passenger);
+    }
 
     @Override
     public String toString() {

@@ -11,6 +11,7 @@ package com.mycompany.mini.metro;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 public class Mechanics {
 
@@ -77,7 +78,7 @@ public class Mechanics {
         if (line.getRoute().size() == 2) {
             Train train = new Train(
                     true,
-                    new ArrayList<>(line.getRoute()), // the train's own copy
+                    new ArrayList<>(line.getRoute()),
                     lineIndex
             );
             world.addTrain(train, line);
@@ -106,6 +107,9 @@ public class Mechanics {
             train.setX(nextStation.getX());
             train.setY(nextStation.getY());
             train.getNextStations().removeFirst();
+
+            dropOffPassengers(nextStation, train);
+            collectPassengers(nextStation, train);
 
             if (train.getNextStations().isEmpty()) {
                 train.flipDirection();
@@ -141,5 +145,28 @@ public class Mechanics {
 
     public int getStationSize() {
         return this.stationRadius;
+    }
+
+    public void collectPassengers(Station station, Train train) {
+        Iterator<Passenger> iterator = station.getWaiting().iterator();
+        while (iterator.hasNext()) {
+            Passenger p = iterator.next();
+            train.pickUp(p);
+            iterator.remove();
+        }
+    }
+
+    public void dropOffPassengers(Station station, Train train) {
+        
+        Iterator<Passenger> iterator = train.getPassengers().iterator();
+        if (!train.getPassengers().isEmpty()) {
+            while (iterator.hasNext()) {
+                Passenger p = iterator.next();
+                if (p.getDestination() == station.getShape()) {
+                    iterator.remove();
+                    
+                }
+            }
+        }
     }
 }

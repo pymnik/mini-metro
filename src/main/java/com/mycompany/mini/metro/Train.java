@@ -14,7 +14,7 @@ import java.util.List;
 public class Train {
 
     private int remainingCapacity = 4;
-    private List<Passenger> passengers;
+    private List<Passenger> passengers = new ArrayList<>();
     private boolean direction = true;
     private List<Station> nextStations = new ArrayList<>();
     private double x;
@@ -80,5 +80,9 @@ public class Train {
 
     public void flipDirection() {
         direction = !direction;
+    }
+    
+    public List<Passenger> getPassengers(){
+        return passengers;
     }
 }
