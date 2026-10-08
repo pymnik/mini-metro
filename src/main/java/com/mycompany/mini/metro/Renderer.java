@@ -67,6 +67,7 @@ public class Renderer extends JPanel {
         drawStations(g2);
         drawText(g2);
         drawPassengers(g2);
+        drawTrains(g2);
     }
 
     private void drawLines(Graphics2D g2) {
@@ -158,6 +159,22 @@ public class Renderer extends JPanel {
                         Color.DARK_GRAY,
                         2);
             }
+        }
+    }
+
+    private void drawTrains(Graphics2D g2) {
+        for (Train train : world.getTrains()) {
+            System.out.println("Trains x: " + train.getX() + " y:" + train.getY() + " next station is " + train.getNextStations().getFirst());
+            draw(
+                    g2,
+                    StationShape.SQUARE,
+                    train.getX(),
+                    train.getY(),
+                    15.0,
+                    lineColors[train.getMetroLineIndex()],
+                    Color.BLACK,
+                    (float) 2.0
+            );
         }
     }
 }

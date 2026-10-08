@@ -74,10 +74,10 @@ public class Mechanics {
             return station.getName() + " is already on line " + (lineIndex + 1) + ".";
         }
         line.addStation(station);
-        if (line.getRoute().size() <= 2) {
+        if (line.getRoute().size() == 2) {
             Train train = new Train(
                     true,
-                    line.getRoute(),
+                    new ArrayList<>(line.getRoute()), // the train's own copy
                     lineIndex
             );
             world.addTrain(train, line);
@@ -92,22 +92,28 @@ public class Mechanics {
     }
 
     private void updateTrainPos(Train train) {
+        if (train.getNextStations().isEmpty()) {
+            return;
+        }
+
         Station nextStation = train.getNextStations().getFirst();
-        int dX = nextStation.getX() - train.getX();
-        int dY = nextStation.getY() - train.getY();
-        int dist = (int) Math.hypot(dX, dY);
+        double dX = nextStation.getX() - train.getX();
+        double dY = nextStation.getY() - train.getY();
+        double dist = Math.hypot(dX, dY);
 
         // Close enough to arrive this tick: snap to the station and move on.
         if (dist <= trainSpeed) {
             train.setX(nextStation.getX());
             train.setY(nextStation.getY());
             train.getNextStations().removeFirst();
+
             if (train.getNextStations().isEmpty()) {
                 train.flipDirection();
-                if (train.getDirection() == true) {
-                    train.setNextStations(world.getLineById(train.getMetroLineIndex()).getRoute());
+                List<Station> route = world.getLineById(train.getMetroLineIndex()).getRoute();
+                if (train.getDirection()) {
+                    train.setNextStations(new ArrayList<>(route));
                 } else {
-                    train.setNextStations(world.getLineById(train.getMetroLineIndex()).getRoute().reversed());
+                    train.setNextStations(new ArrayList<>(route.reversed()));
                 }
             }
             return;
