@@ -16,7 +16,7 @@ public class Mechanics {
 
     private double spawnInterval = 2.0;
     private double spawnTimer = 1.0;
-    private int stationCapacity = 6;
+    private int stationCapacity = 8;
     private int stationRadius = 20;
     private WorldState world;
     private List<Station> stations;

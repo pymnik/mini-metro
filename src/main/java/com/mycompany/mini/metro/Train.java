@@ -16,7 +16,7 @@ public class Train {
     private int remainingCapacity = 6;
     private List<Passenger> passengers;
     private boolean direction = true;
-    private List<Station> nextStations;
+    private List<Station> nextStations = new ArrayList<>();
 
     public Train(boolean direction, List<Station> nextStations) {
         this.direction = direction;
