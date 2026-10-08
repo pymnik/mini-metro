@@ -16,7 +16,8 @@ public class Mechanics {
 
     private double spawnInterval = 2.0;
     private double spawnTimer = 1.0;
-    private int stationCapacity = 8;
+    private int stationCapacity = 6;
+    private int trainSpeed = 1;
     private int stationRadius = 20;
     private WorldState world;
     private List<Station> stations;
@@ -34,16 +35,20 @@ public class Mechanics {
 
         world.changeElapsed(dt);
         spawnTimer -= dt;
-        if (spawnTimer <= 0) {
+        while (spawnTimer <= 0) {
             spawnPassenger();
             spawnInterval *= 0.999; //spawn faster overtime
-            spawnTimer = spawnInterval;
+            spawnTimer += spawnInterval;
         }
 
         for (Station station : stations) {
             if (station.getWaiting().size() > stationCapacity) {
                 world.setGameOver();
             }
+        }
+
+        for (Train train : world.getTrains()) {
+            updateTrain(train);
         }
 
     }
@@ -69,7 +74,53 @@ public class Mechanics {
             return station.getName() + " is already on line " + (lineIndex + 1) + ".";
         }
         line.addStation(station);
+        if (line.getRoute().size() <= 2) {
+            Train train = new Train(
+                    true,
+                    line.getRoute(),
+                    lineIndex
+            );
+            world.addTrain(train, line);
+            setInitialTrainPos(train, line);
+        }
         return null;
+    }
+
+    public void updateTrain(Train train) {
+        updateTrainPos(train);
+//        updateTrainPassengers();
+    }
+
+    private void updateTrainPos(Train train) {
+        Station nextStation = train.getNextStations().getFirst();
+        int dX = nextStation.getX() - train.getX();
+        int dY = nextStation.getY() - train.getY();
+        int dist = (int) Math.hypot(dX, dY);
+
+        // Close enough to arrive this tick: snap to the station and move on.
+        if (dist <= trainSpeed) {
+            train.setX(nextStation.getX());
+            train.setY(nextStation.getY());
+            train.getNextStations().removeFirst();
+            if (train.getNextStations().isEmpty()) {
+                train.flipDirection();
+                if (train.getDirection() == true) {
+                    train.setNextStations(world.getLineById(train.getMetroLineIndex()).getRoute());
+                } else {
+                    train.setNextStations(world.getLineById(train.getMetroLineIndex()).getRoute().reversed());
+                }
+            }
+            return;
+        }
+
+        train.setX(train.getX() + dX / dist * trainSpeed);
+        train.setY(train.getY() + dY / dist * trainSpeed);
+    }
+
+    public void setInitialTrainPos(Train train, MetroLine line) {
+        Station originStation = line.getOriginStation();
+        train.setX(originStation.getX());
+        train.setY(originStation.getY());
     }
 
     public Station findStationAt(double x, double y) {
@@ -81,7 +132,8 @@ public class Mechanics {
         }
         return null;
     }
-    public int getStationSize(){
+
+    public int getStationSize() {
         return this.stationRadius;
     }
 }

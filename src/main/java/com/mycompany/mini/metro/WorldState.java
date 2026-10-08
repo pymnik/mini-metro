@@ -15,13 +15,14 @@ public class WorldState {
 
     private List<Station> stations = new ArrayList<>();
     private List<MetroLine> lines = new ArrayList<>();
+    private List<Train> trains = new ArrayList<>();
     private boolean gameOver = false;
     private long elapsed = System.nanoTime();
 
     public WorldState() {
-        stations.add(new Station(StationShape.DIAMOND, "AMS", 350.0, 250.0));
-        stations.add(new Station(StationShape.CIRCLE, "EIND", 430.0, 440.0));
-        stations.add(new Station(StationShape.TRIANGLE, "GRO", 540.0, 100.0));
+        stations.add(new Station(StationShape.DIAMOND, "AMS", 350, 250));
+        stations.add(new Station(StationShape.CIRCLE, "EIND", 430, 440));
+        stations.add(new Station(StationShape.TRIANGLE, "GRO", 540, 100));
 
         for (int i = 0; i < 3; i++) {
             lines.add(new MetroLine(i));
@@ -44,11 +45,24 @@ public class WorldState {
         return this.lines;
     }
 
+    public MetroLine getLineById(int id) {
+        return lines.get(id);
+    }
+
+    public void addTrain(Train train, MetroLine line) {
+        trains.add(train);
+        line.addTrain(train);
+    }
+
+    public List<Train> getTrains() {
+        return trains;
+    }
+
     public boolean isGameOver() {
         return gameOver;
     }
-    
-    public void setGameOver(){
+
+    public void setGameOver() {
         this.gameOver = true;
     }
 

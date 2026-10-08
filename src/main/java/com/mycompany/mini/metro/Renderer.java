@@ -77,8 +77,8 @@ public class Renderer extends JPanel {
             for (int i = 0; i < line.getRoute().size() - 1; i++) {
                 Station a = line.getRoute().get(i);
                 Station b = line.getRoute().get(i + 1);
-                g2.drawLine((int) a.getX(), (int) a.getY(),
-                        (int) b.getX(), (int) b.getY());
+                g2.drawLine(a.getX(), a.getY(),
+                        b.getX(), b.getY());
             }
         }
     }
@@ -140,8 +140,8 @@ public class Renderer extends JPanel {
             g2.setColor(Color.BLACK);
             g2.setFont(new Font("Segoe UI", Font.BOLD, 14));
             g2.drawString(station.getName(),
-                    (int) station.getX() - mechanics.getStationSize() + 3,
-                    (int) station.getY() + mechanics.getStationSize() + 10);
+                    station.getX() - mechanics.getStationSize() + 3,
+                    station.getY() + mechanics.getStationSize() + 10);
         }
     }
 
@@ -150,12 +150,12 @@ public class Renderer extends JPanel {
             Station station = world.getStationById(i);
             List<Passenger> waiting = station.getWaiting();
             for (int j = 0; j < waiting.size(); j++) {
-                draw(g2, waiting.get(j).getDestination(), 
+                draw(g2, waiting.get(j).getDestination(),
                         station.getX() + (8 * (j + 2)),
-                        station.getY() - 5, 
-                        4.0, 
+                        station.getY() - 5,
+                        4.0,
                         Color.DARK_GRAY,
-                        Color.DARK_GRAY, 
+                        Color.DARK_GRAY,
                         2);
             }
         }

@@ -15,6 +15,7 @@ public class MetroLine {
 
     private int number;
     private List<Station> route = new ArrayList<>();
+    private List<Train> trains = new ArrayList<>();
 
     public MetroLine(int num) {
         this.number = num;
@@ -28,6 +29,14 @@ public class MetroLine {
         this.route.add(station);
     }
 
+    public void addTrain(Train train) {
+        trains.add(train);
+    }
+
+    public void removeTrain(Train train) {
+        trains.remove(train);
+    }
+
     public void rewriteRoute(List<Station> route) {
         this.route = route;
     }
@@ -35,9 +44,13 @@ public class MetroLine {
     public void clearRoute() {
         this.route.clear();
     }
-    
-    public List<Station> getRoute(){
+
+    public List<Station> getRoute() {
         return this.route;
+    }
+    
+    public Station getOriginStation(){
+        return route.getFirst();
     }
 
     public boolean contains(Station station) {

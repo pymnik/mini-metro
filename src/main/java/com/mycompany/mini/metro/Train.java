@@ -13,22 +13,27 @@ import java.util.List;
 
 public class Train {
 
-    private int remainingCapacity = 6;
+    private int remainingCapacity = 4;
     private List<Passenger> passengers;
     private boolean direction = true;
     private List<Station> nextStations = new ArrayList<>();
     private int x;
     private int y;
+    private int metroLineIndex;
 
-    public Train(boolean direction, List<Station> nextStations, int x, int y) {
+    public Train(boolean direction, List<Station> nextStations, int metroLineIndex) {
         this.direction = direction;
         this.nextStations = nextStations;
-        this.x = x;
-        this.y = y;
+        this.metroLineIndex = metroLineIndex;
+
     }
 
     public int getCapacity() {
         return remainingCapacity;
+    }
+
+    public int getMetroLineIndex() {
+        return metroLineIndex;
     }
 
     public List<Station> getNextStations() {
@@ -48,20 +53,32 @@ public class Train {
             return;
         }
     }
-    
-    public int getX(){
+
+    public int getX() {
         return x;
     }
-    
-    public int getY(){
+
+    public int getY() {
         return y;
     }
-    
-    public void setX(int x){
+
+    public void setX(int x) {
         this.x = x;
     }
-    
-    public void setY(int y){
+
+    public void setY(int y) {
         this.y = y;
+    }
+
+    public void setNextStations(List<Station> next) {
+        nextStations = next;
+    }
+
+    public boolean getDirection() {
+        return this.direction;
+    }
+
+    public void flipDirection() {
+        direction = !direction;
     }
 }

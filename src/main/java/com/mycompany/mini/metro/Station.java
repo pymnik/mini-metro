@@ -15,11 +15,11 @@ public class Station {
 
     private StationShape shape;
     private String name;
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private List<Passenger> waiting = new ArrayList<>();
 
-    public Station(StationShape shape, String name, double x, double y) {
+    public Station(StationShape shape, String name, int x, int y) {
         this.shape = shape;
         this.name = name;
         this.x = x;
@@ -34,11 +34,11 @@ public class Station {
         return this.name;
     }
 
-    public double getX() {
+    public int getX() {
         return this.x;
     }
 
-    public double getY() {
+    public int getY() {
         return this.y;
     }
 
