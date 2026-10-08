@@ -18,6 +18,8 @@ public class MiniMetroGUI extends javax.swing.JFrame {
      */
     public MiniMetroGUI() {
         initComponents();
+        setResizable(false);
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 // loading image into memory. Read the file we give it, stored in background, try catch so broken file doesnt break game
         try {
             background = javax.imageio.ImageIO.read(getClass().getResource("/BackgroundMap.png"));
@@ -77,8 +79,6 @@ public class MiniMetroGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mini Metro");
-        setMinimumSize(null);
-        setResizable(false);
 
         MenuPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
