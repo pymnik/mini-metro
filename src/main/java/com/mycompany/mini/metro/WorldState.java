@@ -20,9 +20,15 @@ public class WorldState {
     private long elapsed = System.nanoTime();
 
     public WorldState() {
+<<<<<<< HEAD
         stations.add(new Station(StationShape.DIAMOND, "AMS", 350, 250));
         stations.add(new Station(StationShape.CIRCLE, "EIND", 430, 440));
         stations.add(new Station(StationShape.TRIANGLE, "GRO", 540, 100));
+=======
+        stations.add(new Station(StationShape.DIAMOND, "AMS", 580, 400));
+        stations.add(new Station(StationShape.CIRCLE, "EIND", 745, 650));
+        stations.add(new Station(StationShape.TRIANGLE, "GRO", 900, 150));
+>>>>>>> origin/main
 
         for (int i = 0; i < 3; i++) {
             lines.add(new MetroLine(i));
