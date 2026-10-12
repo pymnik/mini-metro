@@ -150,21 +150,25 @@ public class Mechanics {
     public void collectPassengers(Station station, Train train) {
         Iterator<Passenger> iterator = station.getWaiting().iterator();
         while (iterator.hasNext()) {
-            Passenger p = iterator.next();
-            train.pickUp(p);
-            iterator.remove();
+            if (train.getCapacity() > 0) {
+                Passenger p = iterator.next();
+                train.pickUp(p);
+                iterator.remove();
+            } else {
+                return;
+            }
+            System.out.println("Capacity " + train.getCapacity());
         }
     }
 
     public void dropOffPassengers(Station station, Train train) {
-        
-        Iterator<Passenger> iterator = train.getPassengers().iterator();
+        List<Passenger> copyOfPassengers = new ArrayList(train.getPassengers());
+        Iterator<Passenger> iterator = copyOfPassengers.iterator();
         if (!train.getPassengers().isEmpty()) {
             while (iterator.hasNext()) {
                 Passenger p = iterator.next();
-                if (p.getDestination() == station.getShape()) {
-                    iterator.remove();
-                    
+                if (p.getDestination().equals(station.getShape())) {
+                    train.dropOff(p);
                 }
             }
         }

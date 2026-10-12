@@ -43,10 +43,12 @@ public class Train {
     public void pickUp(Passenger passenger) {
         passengers.add(passenger);
         remainingCapacity -= 1;
+        System.out.println("Picked up " + passenger);
     }
 
     public void dropOff(Passenger passenger) {
         if (passengers.contains(passenger)) {
+            System.out.println("Dropped off " + passenger);
             passengers.remove(passenger);
             remainingCapacity += 1;
         } else {

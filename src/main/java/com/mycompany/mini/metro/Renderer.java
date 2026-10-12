@@ -68,6 +68,7 @@ public class Renderer extends JPanel {
         drawText(g2);
         drawPassengers(g2);
         drawTrains(g2);
+        drawPassengerTrain(g2);
     }
 
     private void drawLines(Graphics2D g2) {
@@ -164,17 +165,42 @@ public class Renderer extends JPanel {
 
     private void drawTrains(Graphics2D g2) {
         for (Train train : world.getTrains()) {
-            System.out.println("Trains x: " + train.getX() + " y:" + train.getY() + " next station is " + train.getNextStations().getFirst());
+//            System.out.println("Trains x: " + train.getX() + " y:" + train.getY() + " next station is " + train.getNextStations().getFirst());
             draw(
                     g2,
                     StationShape.SQUARE,
                     train.getX(),
                     train.getY(),
-                    15.0,
+                    17.5,
                     lineColors[train.getMetroLineIndex()],
                     Color.BLACK,
                     (float) 2.0
             );
         }
     }
+        //math to for position in the train
+     private static final double[][] slots = {
+            {-3, -3},
+            {3, -3},
+            {-3, 3},
+            {3, 3}
+        };
+
+    private void drawPassengerTrain(Graphics2D g2) {
+        for (int i = 0; i < world.getTrains().size(); i++) {
+            Train train = world.getTrains().get(i);
+            List<Passenger> passengerTrain = train.getPassengers();
+            for (int j = 0; j < passengerTrain.size(); j++) {
+            draw(
+                    g2,
+                    passengerTrain.get(j).getDestination(),
+                    train.getX() + slots[j][0],
+                    train.getY() + slots[j][1],
+                    4.0,
+                    Color.DARK_GRAY,
+                    Color.DARK_GRAY,
+                    1);
+        }
+    }
+}
 }

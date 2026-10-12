@@ -23,7 +23,7 @@ public class WorldState {
         stations.add(new Station(StationShape.DIAMOND, "AMS", 580, 400));
         stations.add(new Station(StationShape.CIRCLE, "EIND", 745, 650));
         stations.add(new Station(StationShape.TRIANGLE, "GRO", 900, 150));
-
+        stations.add(new Station(StationShape.SQUARE, "ARN", 800, 500));
         for (int i = 0; i < 3; i++) {
             lines.add(new MetroLine(i));
         }
