@@ -186,6 +186,14 @@ public class Mechanics {
         }
         if (nextStationShapes.contains(passenger.getDestination())) {
             return null;
+        } else {
+            List<MetroLine> lines = new ArrayList<>(world.getLines());
+            for (int i = 0; i < lines.size(); i++) {
+                if (!lines.get(i).contains(station)) {
+                    lines.remove(lines.get(i)); //only the lines that the passenger can take
+                }
+            }
+            
         }
         return new ArrayList<>();
     }
