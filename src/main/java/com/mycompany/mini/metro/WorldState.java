@@ -10,12 +10,14 @@ package com.mycompany.mini.metro;
  */
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 public class WorldState {
 
     private List<Station> stations = new ArrayList<>();
     private List<MetroLine> lines = new ArrayList<>();
     private List<Train> trains = new ArrayList<>();
+    private HashMap<MetroLine, Train> trainMap = new HashMap<>();
     private boolean gameOver = false;
     private long elapsed = System.nanoTime();
 
@@ -52,10 +54,15 @@ public class WorldState {
     public void addTrain(Train train, MetroLine line) {
         trains.add(train);
         line.addTrain(train);
+        trainMap.put(line, train);
     }
 
     public List<Train> getTrains() {
         return trains;
+    }
+    
+    public Train getTrainByLine(MetroLine line){
+        return trainMap.get(line);
     }
 
     public boolean isGameOver() {

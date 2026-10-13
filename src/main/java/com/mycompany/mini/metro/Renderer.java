@@ -23,6 +23,12 @@ public class Renderer extends JPanel {
     private Mechanics mechanics;
     private int selectedLine;
     private int passengerRadius = 5;
+    private static final double[][] slots = {
+            {-3, -3},
+            {3, -3},
+            {-3, 3},
+            {3, 3}
+        };
 
     public Renderer(WorldState world, Mechanics mechanics) {
         this.world = world;
@@ -165,7 +171,7 @@ public class Renderer extends JPanel {
 
     private void drawTrains(Graphics2D g2) {
         for (Train train : world.getTrains()) {
-//            System.out.println("Trains x: " + train.getX() + " y:" + train.getY() + " next station is " + train.getNextStations().getFirst());
+            System.out.println("Trains next stations are: " + train.getNextStations());
             draw(
                     g2,
                     StationShape.SQUARE,
@@ -179,12 +185,7 @@ public class Renderer extends JPanel {
         }
     }
         //math to for position in the train
-     private static final double[][] slots = {
-            {-3, -3},
-            {3, -3},
-            {-3, 3},
-            {3, 3}
-        };
+     
 
     private void drawPassengerTrain(Graphics2D g2) {
         for (int i = 0; i < world.getTrains().size(); i++) {

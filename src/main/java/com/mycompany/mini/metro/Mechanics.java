@@ -75,6 +75,10 @@ public class Mechanics {
             return station.getName() + " is already on line " + (lineIndex + 1) + ".";
         }
         line.addStation(station);
+        if (world.getTrainByLine(line) != null) {
+            world.getTrainByLine(line).addLastStation(station);
+        }
+
         if (line.getRoute().size() == 2) {
             Train train = new Train(
                     true,
@@ -152,12 +156,13 @@ public class Mechanics {
         while (iterator.hasNext()) {
             if (train.getCapacity() > 0) {
                 Passenger p = iterator.next();
-                train.pickUp(p);
-                iterator.remove();
+                if (shouldTake(p, station, train)) {
+                    train.pickUp(p);
+                    iterator.remove();
+                }
             } else {
                 return;
             }
-            System.out.println("Capacity " + train.getCapacity());
         }
     }
 
@@ -171,6 +176,25 @@ public class Mechanics {
                     train.dropOff(p);
                 }
             }
+        }
+    }
+
+    public List<Station> getShortestPath(Passenger passenger, Station station, Train train) {
+        List<StationShape> nextStationShapes = new ArrayList<>();
+        for (Station nthStation : train.getNextStations()) {
+            nextStationShapes.add(nthStation.getShape());
+        }
+        if (nextStationShapes.contains(passenger.getDestination())) {
+            return null;
+        }
+        return new ArrayList<>();
+    }
+
+    public boolean shouldTake(Passenger passenger, Station station, Train train) {
+        if (getShortestPath(passenger, station, train) == null) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

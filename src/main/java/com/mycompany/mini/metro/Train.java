@@ -39,6 +39,10 @@ public class Train {
     public List<Station> getNextStations() {
         return nextStations;
     }
+    
+    public void addLastStation(Station station){
+        nextStations.add(station);
+    }
 
     public void pickUp(Passenger passenger) {
         passengers.add(passenger);
