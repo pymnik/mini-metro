@@ -39,6 +39,7 @@ public class MiniMetro {
             frame.getLine2Button().addActionListener(e -> renderer.setSelectedLine(1));
             frame.getLine3Button().addActionListener(e -> renderer.setSelectedLine(2));
             frame.getPauseButton().addActionListener(e -> renderer.pause());
+            frame.getSpeedButton().addActionListener(e -> renderer.speed2x());
 
             // 5. Show the window
             frame.setLocationRelativeTo(null);

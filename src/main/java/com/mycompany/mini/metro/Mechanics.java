@@ -18,12 +18,14 @@ public class Mechanics {
     private double spawnInterval = 2.0;
     private double spawnTimer = 1.0;
     private int stationCapacity = 6;
-    private int trainSpeed = 1;
+    private int trainSpeed = 60;
     private int stationRadius = 20;
     private WorldState world;
     private List<Station> stations;
     private Random random = new Random();
     private boolean pause = false;
+    private boolean speed2x = false;
+    private boolean restart = false;
 
     public Mechanics(WorldState world) {
         this.world = world;
@@ -33,6 +35,9 @@ public class Mechanics {
     public void update(double dt) {
         if (world.isGameOver() || this.pause) {
             return;
+        }
+        if (speed2x) {
+            dt *= 2;
         }
 
         world.changeElapsed(dt);
@@ -50,7 +55,7 @@ public class Mechanics {
         }
 
         for (Train train : world.getTrains()) {
-            updateTrain(train);
+            updateTrain(train, dt);
         }
 
     }
@@ -92,22 +97,23 @@ public class Mechanics {
         return null;
     }
 
-    public void updateTrain(Train train) {
-        updateTrainPos(train);
+    public void updateTrain(Train train, double dt) {
+        updateTrainPos(train, dt);
     }
 
-    private void updateTrainPos(Train train) {
+    private void updateTrainPos(Train train, double dt) {
         if (train.getNextStations().isEmpty()) {
             return;
         }
 
+        double step = trainSpeed * dt;
         Station nextStation = train.getNextStations().getFirst();
         double dX = nextStation.getX() - train.getX();
         double dY = nextStation.getY() - train.getY();
         double dist = Math.hypot(dX, dY);
 
         // snap to the station
-        if (dist <= trainSpeed) {
+        if (dist <= step) {
             train.setX(nextStation.getX());
             train.setY(nextStation.getY());
             train.getNextStations().removeFirst();
@@ -127,8 +133,8 @@ public class Mechanics {
             return;
         }
 
-        train.setX(train.getX() + dX / dist * trainSpeed);
-        train.setY(train.getY() + dY / dist * trainSpeed);
+        train.setX(train.getX() + dX / dist * step);
+        train.setY(train.getY() + dY / dist * step);
     }
 
     public void setInitialTrainPos(Train train, MetroLine line) {
@@ -235,5 +241,13 @@ public class Mechanics {
     
     public boolean getPause(){
         return pause;
+    }
+    
+    public void speed2x(){
+        this.speed2x = !this.speed2x;
+    }
+    
+    public boolean getSpeed2x(){
+        return speed2x;
     }
 }

@@ -63,6 +63,15 @@ public class Renderer extends JPanel {
             frame.getPauseButton().setText("Pause");
         }
     }
+    
+    public void speed2x(){
+        mechanics.speed2x();
+        if(mechanics.getSpeed2x()){
+            frame.getSpeedButton().setText("Speed 2x");
+        } else{
+            frame.getSpeedButton().setText("Speed 1x");
+        }
+    }
 
     // This paints the scene each time repaint() is called
     @Override

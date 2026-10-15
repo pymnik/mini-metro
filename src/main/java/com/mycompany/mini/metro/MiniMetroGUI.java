@@ -91,7 +91,8 @@ public class MiniMetroGUI extends javax.swing.JFrame {
 
         Restart.setText("Restart");
 
-        Speed.setText("Speed 2x");
+        Speed.setText("Speed 1x");
+        Speed.setActionCommand("Speed 1x");
 
         Lines.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         Lines.setText("Lines:");
@@ -217,7 +218,7 @@ public class MiniMetroGUI extends javax.swing.JFrame {
                 .addComponent(Line3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ClearLine)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(Statistics)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Time)
@@ -233,7 +234,7 @@ public class MiniMetroGUI extends javax.swing.JFrame {
                 .addComponent(NewPassenger, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MostCrowded, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         GamePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -315,7 +316,6 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     public javax.swing.JButton getSpeedButton() {
         return Speed;
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AvgTrip;

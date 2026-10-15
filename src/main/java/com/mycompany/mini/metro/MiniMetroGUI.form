@@ -149,7 +149,7 @@
                   <Component id="Line3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="ClearLine" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="111" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Statistics" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="Time" min="-2" max="-2" attributes="0"/>
@@ -165,7 +165,7 @@
                   <Component id="NewPassenger" min="-2" pref="16" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="MostCrowded" min="-2" pref="16" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                  <EmptySpace pref="182" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -202,7 +202,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="Speed">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Speed 2x"/>
+            <Property name="text" type="java.lang.String" value="Speed 1x"/>
+            <Property name="actionCommand" type="java.lang.String" value="Speed 1x"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Lines">
