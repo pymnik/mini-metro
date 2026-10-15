@@ -14,7 +14,7 @@ import java.util.List;
 public class Passenger {
 
     private StationShape destination;
-    private List<Station> path = new ArrayList<>();
+    private Station intermediate;
 
     public Passenger(StationShape destination) {
         this.destination = destination;
@@ -24,12 +24,12 @@ public class Passenger {
         return this.destination;
     }
     
-    public List<Station> getPath(){
-        return path;
+    public Station getIntermediate(){
+        return intermediate;
     }
     
-    public void setPath(List<Station> path) {
-        this.path = path;
+    public void setIntermediate(Station st) {
+        this.intermediate = st;
     }
     
     @Override

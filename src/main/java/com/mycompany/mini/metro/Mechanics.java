@@ -106,24 +106,24 @@ public class Mechanics {
         double dY = nextStation.getY() - train.getY();
         double dist = Math.hypot(dX, dY);
 
-        // Close enough to arrive this tick: snap to the station and move on.
+        // snap to the station
         if (dist <= trainSpeed) {
             train.setX(nextStation.getX());
             train.setY(nextStation.getY());
             train.getNextStations().removeFirst();
 
-            dropOffPassengers(nextStation, train);
-            collectPassengers(nextStation, train);
-
             if (train.getNextStations().isEmpty()) {
                 train.flipDirection();
-                List<Station> route = world.getLineById(train.getMetroLineIndex()).getRoute();
-                if (train.getDirection()) {
-                    train.setNextStations(new ArrayList<>(route));
-                } else {
-                    train.setNextStations(new ArrayList<>(route.reversed()));
+                List<Station> route = new ArrayList<>(world.getLineById(train.getMetroLineIndex()).getRoute());
+                if (!train.getDirection()) {
+                    route = route.reversed();
                 }
+                route.removeFirst();
+                train.setNextStations(new ArrayList<>(route));
             }
+
+            dropOffPassengers(nextStation, train);
+            collectPassengers(nextStation, train);
             return;
         }
 
@@ -152,16 +152,14 @@ public class Mechanics {
     }
 
     public void collectPassengers(Station station, Train train) {
-        Iterator<Passenger> iterator = station.getWaiting().iterator();
-        while (iterator.hasNext()) {
-            if (train.getCapacity() > 0) {
-                Passenger p = iterator.next();
-                if (shouldTake(p, station, train)) {
-                    train.pickUp(p);
-                    iterator.remove();
-                }
-            } else {
+        for (Passenger p : new ArrayList<>(station.getWaiting())) {
+            if (train.getCapacity() == 0) {
                 return;
+            }
+            if (shouldTake(p, station, train)) {
+                p.setIntermediate(findTransfer(p, train));
+                train.pickUp(p);
+                station.removePassenger(p);
             }
         }
     }
@@ -174,64 +172,57 @@ public class Mechanics {
                 Passenger p = iterator.next();
                 if (p.getDestination().equals(station.getShape())) {
                     train.dropOff(p);
+                } else if (p.getIntermediate().equals(station)) {
+                    station.addPassenger(p);
+                    train.dropOff(p);
+                    p.setIntermediate(null);
                 }
             }
         }
     }
 
-    public List<Station> getShortestPath(Passenger passenger, Station station, Train train) {
-        List<StationShape> nextStationShapes = new ArrayList<>();
-        for (Station nthStation : train.getNextStations()) {
-            nextStationShapes.add(nthStation.getShape());
-        }
-        if (nextStationShapes.contains(passenger.getDestination())) {
-            return null;
-        } else {
-            List<MetroLine> linesToStart = new ArrayList<>(world.getLines());
-            for (int i = 0; i < linesToStart.size(); i++) {
-                if (!linesToStart.get(i).contains(station)) {
-                    linesToStart.remove(linesToStart.get(i)); //only the lines that the passenger can take
-                }
+    private boolean reachesShape(List<Station> stations, StationShape shape) {
+        for (Station s : stations) {
+            if (s.getShape() == shape) {
+                return true;
             }
+        }
+        return false;
+    }
 
-            List<MetroLine> linesWithDestination = new ArrayList<>(world.getLines());
-            List<Boolean> IsASuitableLine = new ArrayList<>();
+    private boolean lineReachesShape(Station station, StationShape shape) {
+        for (MetroLine line : world.getLines()) {
+            if (line.contains(station) && reachesShape(line.getRoute(), shape)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Station findTransfer(Passenger p, Train train) {
+        for (Station candidate : train.getNextStations()) {
             for (int i = 0; i < world.getLines().size(); i++) {
-                IsASuitableLine.add(false);
-            }
-
-            for (int i = 0; i < linesWithDestination.size(); i++) {
-                MetroLine line = linesWithDestination.get(i); // i'th line
-                for (int j = 0; j < line.getRoute().size(); j++) {
-                    Station stationOnLine = line.getRoute().get(j); // j'th station on i'th line
-                    if (stationOnLine.getShape() == passenger.getDestination()) {
-                        IsASuitableLine.add(i, Boolean.TRUE);
-                        Station intersectionStation = getAnIntersection(train.getNextStations(), line.getRoute());
-                        if (intersectionStation != null) { //add a check if lineToStart has an intersection with the line
-                            System.out.println(passenger + "'s intersection station is: " + intersectionStation);
-                        }
-                    }
+                if (i == train.getMetroLineIndex()) {
+                    continue;                          // changing onto the same line is pointless
                 }
-            }
-
-        }
-        return new ArrayList<>();
-    }
-
-    public boolean shouldTake(Passenger passenger, Station station, Train train) {
-        if (getShortestPath(passenger, station, train) == null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public Station getAnIntersection(List<Station> a, List<Station> b) {
-        for (int i = 0; i < a.size(); i++) {
-            if (b.contains(a.get(i))) {
-                return a.get(i);
+                MetroLine other = world.getLines().get(i);
+                if (other.contains(candidate)
+                        && reachesShape(other.getRoute(), p.getDestination())) {
+                    return candidate;
+                }
             }
         }
         return null;
+    }
+
+    public boolean shouldTake(Passenger p, Station here, Train train) {
+        StationShape goal = p.getDestination();
+        if (reachesShape(train.getNextStations(), goal)) {
+            return true;                               // direct way
+        }
+        if (lineReachesShape(here, goal)) {
+            return false;                              // direct way exist so wait for it
+        }
+        return findTransfer(p, train) != null;         // find a transfer
     }
 }
