@@ -93,7 +93,6 @@ public class Mechanics {
 
     public void updateTrain(Train train) {
         updateTrainPos(train);
-//        updateTrainPassengers();
     }
 
     private void updateTrainPos(Train train) {
@@ -172,10 +171,12 @@ public class Mechanics {
                 Passenger p = iterator.next();
                 if (p.getDestination().equals(station.getShape())) {
                     train.dropOff(p);
-                } else if (p.getIntermediate().equals(station)) {
-                    station.addPassenger(p);
-                    train.dropOff(p);
-                    p.setIntermediate(null);
+                } else if (p.getIntermediate() != null) {
+                    if (p.getIntermediate().equals(station)) {
+                        station.addPassenger(p);
+                        train.dropOff(p);
+                        p.setIntermediate(null);
+                    }
                 }
             }
         }
