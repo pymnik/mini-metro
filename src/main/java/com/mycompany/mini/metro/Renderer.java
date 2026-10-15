@@ -171,7 +171,6 @@ public class Renderer extends JPanel {
 
     private void drawTrains(Graphics2D g2) {
         for (Train train : world.getTrains()) {
-            System.out.println("Trains next stations are: " + train.getNextStations());
             draw(
                     g2,
                     StationShape.SQUARE,

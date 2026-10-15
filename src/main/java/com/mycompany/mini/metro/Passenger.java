@@ -31,4 +31,10 @@ public class Passenger {
     public void setPath(List<Station> path) {
         this.path = path;
     }
+    
+    @Override
+    public String toString(){
+        String result = "Passenger of shape " + this.getDestination();
+        return result;
+    }
 }

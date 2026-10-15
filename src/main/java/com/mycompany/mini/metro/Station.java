@@ -56,8 +56,7 @@ public class Station {
 
     @Override
     public String toString() {
-        String result = name + " shape: " + shape
-                + " waiting: " + waiting.size() + " position: x=" + x + " y=" + y;
+        String result = name + " shape: " + shape;
         return result;
     }
 }

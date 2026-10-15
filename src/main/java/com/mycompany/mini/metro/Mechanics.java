@@ -187,13 +187,33 @@ public class Mechanics {
         if (nextStationShapes.contains(passenger.getDestination())) {
             return null;
         } else {
-            List<MetroLine> lines = new ArrayList<>(world.getLines());
-            for (int i = 0; i < lines.size(); i++) {
-                if (!lines.get(i).contains(station)) {
-                    lines.remove(lines.get(i)); //only the lines that the passenger can take
+            List<MetroLine> linesToStart = new ArrayList<>(world.getLines());
+            for (int i = 0; i < linesToStart.size(); i++) {
+                if (!linesToStart.get(i).contains(station)) {
+                    linesToStart.remove(linesToStart.get(i)); //only the lines that the passenger can take
                 }
             }
-            
+
+            List<MetroLine> linesWithDestination = new ArrayList<>(world.getLines());
+            List<Boolean> IsASuitableLine = new ArrayList<>();
+            for (int i = 0; i < world.getLines().size(); i++) {
+                IsASuitableLine.add(false);
+            }
+
+            for (int i = 0; i < linesWithDestination.size(); i++) {
+                MetroLine line = linesWithDestination.get(i); // i'th line
+                for (int j = 0; j < line.getRoute().size(); j++) {
+                    Station stationOnLine = line.getRoute().get(j); // j'th station on i'th line
+                    if (stationOnLine.getShape() == passenger.getDestination()) {
+                        IsASuitableLine.add(i, Boolean.TRUE);
+                        Station intersectionStation = getAnIntersection(train.getNextStations(), line.getRoute());
+                        if (intersectionStation != null) { //add a check if lineToStart has an intersection with the line
+                            System.out.println(passenger + "'s intersection station is: " + intersectionStation);
+                        }
+                    }
+                }
+            }
+
         }
         return new ArrayList<>();
     }
@@ -204,5 +224,14 @@ public class Mechanics {
         } else {
             return false;
         }
+    }
+
+    public Station getAnIntersection(List<Station> a, List<Station> b) {
+        for (int i = 0; i < a.size(); i++) {
+            if (b.contains(a.get(i))) {
+                return a.get(i);
+            }
+        }
+        return null;
     }
 }
