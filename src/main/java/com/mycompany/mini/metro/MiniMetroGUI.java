@@ -43,13 +43,11 @@ public class MiniMetroGUI extends javax.swing.JFrame {
         Simulation = new javax.swing.JLabel();
         Resume = new javax.swing.JButton();
         Restart = new javax.swing.JButton();
-        Speed2x = new javax.swing.JButton();
+        Speed = new javax.swing.JButton();
         Lines = new javax.swing.JLabel();
         Line1 = new javax.swing.JToggleButton();
         Line2 = new javax.swing.JToggleButton();
         Line3 = new javax.swing.JToggleButton();
-        AddTrain = new javax.swing.JButton();
-        RemoveTrain = new javax.swing.JButton();
         ClearLine = new javax.swing.JButton();
         Statistics = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
@@ -88,12 +86,12 @@ public class MiniMetroGUI extends javax.swing.JFrame {
         Simulation.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         Simulation.setText("Simulation:");
 
-        Resume.setText("Resume");
+        Resume.setLabel("Pause");
         Resume.addActionListener(this::ResumeActionPerformed);
 
         Restart.setText("Restart");
 
-        Speed2x.setText("Speed 2x");
+        Speed.setText("Speed 2x");
 
         Lines.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         Lines.setText("Lines:");
@@ -119,12 +117,8 @@ public class MiniMetroGUI extends javax.swing.JFrame {
         Line3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Line3.setIconTextGap(5);
 
-        AddTrain.setText("Add Train");
-
-        RemoveTrain.setText("Remove Train");
-        RemoveTrain.addActionListener(this::RemoveTrainActionPerformed);
-
         ClearLine.setText("Clear Line");
+        ClearLine.addActionListener(this::ClearLineActionPerformed);
 
         Statistics.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         Statistics.setForeground(new java.awt.Color(102, 102, 102));
@@ -163,47 +157,43 @@ public class MiniMetroGUI extends javax.swing.JFrame {
                             .addComponent(Line1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(MenuPanelLayout.createSequentialGroup()
                                 .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(MenuPanelLayout.createSequentialGroup()
-                                        .addComponent(AddTrain, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(RemoveTrain, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(Line2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Line3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Statistics))
+                                    .addComponent(Line3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(ClearLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(MenuPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(Titel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(MenuPanelLayout.createSequentialGroup()
-                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Titel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(MenuPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Delivered, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Waiting, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(OnTrains)
-                            .addComponent(AvgTrip)
-                            .addComponent(NewPassenger)
-                            .addComponent(MostCrowded)))
-                    .addGroup(MenuPanelLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(Simulation, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(MenuPanelLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(MenuPanelLayout.createSequentialGroup()
-                                .addComponent(Resume)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Restart)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Speed2x))
-                            .addComponent(Lines, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(6, 6, 6)
+                                .addComponent(Simulation, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(MenuPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                                        .addComponent(Resume)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Restart)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Speed))
+                                    .addComponent(Lines, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(MenuPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Statistics)
+                                    .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Delivered, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Waiting, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(OnTrains)
+                                    .addComponent(AvgTrip)
+                                    .addComponent(NewPassenger)
+                                    .addComponent(MostCrowded))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         MenuPanelLayout.setVerticalGroup(
             MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +206,7 @@ public class MiniMetroGUI extends javax.swing.JFrame {
                 .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Resume)
                     .addComponent(Restart)
-                    .addComponent(Speed2x))
+                    .addComponent(Speed))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Lines)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,13 +215,9 @@ public class MiniMetroGUI extends javax.swing.JFrame {
                 .addComponent(Line2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Line3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddTrain)
-                    .addComponent(RemoveTrain))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ClearLine)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addComponent(Statistics)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Time)
@@ -247,7 +233,7 @@ public class MiniMetroGUI extends javax.swing.JFrame {
                 .addComponent(NewPassenger, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MostCrowded, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addGap(89, 89, 89))
         );
 
         GamePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -291,10 +277,6 @@ public class MiniMetroGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ResumeActionPerformed
 
-    private void RemoveTrainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveTrainActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RemoveTrainActionPerformed
-
     private void Line2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Line2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Line2ActionPerformed
@@ -302,6 +284,10 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     private void Line1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Line1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Line1ActionPerformed
+
+    private void ClearLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearLineActionPerformed
+        
+    }//GEN-LAST:event_ClearLineActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,10 +307,17 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     public javax.swing.JToggleButton getLine3Button() {
         return Line3;
     }
+    
+    public javax.swing.JButton getPauseButton() {
+        return Resume;
+    }
+    
+    public javax.swing.JButton getSpeedButton() {
+        return Speed;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddTrain;
     private javax.swing.JLabel AvgTrip;
     private javax.swing.JButton ClearLine;
     private javax.swing.JLabel Delivered;
@@ -337,11 +330,10 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     private javax.swing.JLabel MostCrowded;
     private javax.swing.JLabel NewPassenger;
     private javax.swing.JLabel OnTrains;
-    private javax.swing.JButton RemoveTrain;
     private javax.swing.JButton Restart;
     private javax.swing.JButton Resume;
     private javax.swing.JLabel Simulation;
-    private javax.swing.JButton Speed2x;
+    private javax.swing.JButton Speed;
     private javax.swing.JLabel Statistics;
     private javax.swing.JLabel Time;
     private javax.swing.JLabel Titel;

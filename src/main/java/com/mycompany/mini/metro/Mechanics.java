@@ -23,6 +23,7 @@ public class Mechanics {
     private WorldState world;
     private List<Station> stations;
     private Random random = new Random();
+    private boolean pause = false;
 
     public Mechanics(WorldState world) {
         this.world = world;
@@ -30,7 +31,7 @@ public class Mechanics {
     }
 
     public void update(double dt) {
-        if (world.isGameOver()) {
+        if (world.isGameOver() || this.pause) {
             return;
         }
 
@@ -204,7 +205,7 @@ public class Mechanics {
         for (Station candidate : train.getNextStations()) {
             for (int i = 0; i < world.getLines().size(); i++) {
                 if (i == train.getMetroLineIndex()) {
-                    continue;                          // changing onto the same line is pointless
+                    continue;
                 }
                 MetroLine other = world.getLines().get(i);
                 if (other.contains(candidate)
@@ -225,5 +226,14 @@ public class Mechanics {
             return false;                              // direct way exist so wait for it
         }
         return findTransfer(p, train) != null;         // find a transfer
+    }
+    
+    public void pause(){
+        this.pause = !this.pause;
+        
+    }
+    
+    public boolean getPause(){
+        return pause;
     }
 }

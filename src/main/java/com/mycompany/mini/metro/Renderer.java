@@ -21,18 +21,20 @@ public class Renderer extends JPanel {
         new Color(0xF6BF16), new Color(0x1678D1)};
     private WorldState world;
     private Mechanics mechanics;
+    private MiniMetroGUI frame;
     private int selectedLine;
     private int passengerRadius = 5;
     private static final double[][] slots = {
-            {-3, -3},
-            {3, -3},
-            {-3, 3},
-            {3, 3}
-        };
+        {-3, -3},
+        {3, -3},
+        {-3, 3},
+        {3, 3}
+    };
 
-    public Renderer(WorldState world, Mechanics mechanics) {
+    public Renderer(WorldState world, Mechanics mechanics, MiniMetroGUI frame) {
         this.world = world;
         this.mechanics = mechanics;
+        this.frame = frame;
         setFocusable(true);
         setOpaque(false);
 
@@ -51,6 +53,15 @@ public class Renderer extends JPanel {
 
     public void setSelectedLine(int i) {
         this.selectedLine = i;
+    }
+
+    public void pause() {
+        mechanics.pause();
+        if (mechanics.getPause()) {
+            frame.getPauseButton().setText("Resume");
+        } else{
+            frame.getPauseButton().setText("Pause");
+        }
     }
 
     // This paints the scene each time repaint() is called
@@ -183,24 +194,23 @@ public class Renderer extends JPanel {
             );
         }
     }
-        //math to for position in the train
-     
+    //math to for position in the train
 
     private void drawPassengerTrain(Graphics2D g2) {
         for (int i = 0; i < world.getTrains().size(); i++) {
             Train train = world.getTrains().get(i);
             List<Passenger> passengerTrain = train.getPassengers();
             for (int j = 0; j < passengerTrain.size(); j++) {
-            draw(
-                    g2,
-                    passengerTrain.get(j).getDestination(),
-                    train.getX() + slots[j][0],
-                    train.getY() + slots[j][1],
-                    4.0,
-                    Color.DARK_GRAY,
-                    Color.DARK_GRAY,
-                    1);
+                draw(
+                        g2,
+                        passengerTrain.get(j).getDestination(),
+                        train.getX() + slots[j][0],
+                        train.getY() + slots[j][1],
+                        4.0,
+                        Color.DARK_GRAY,
+                        Color.DARK_GRAY,
+                        1);
+            }
         }
     }
-}
 }

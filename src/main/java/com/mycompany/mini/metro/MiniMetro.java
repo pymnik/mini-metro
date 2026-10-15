@@ -27,7 +27,7 @@ public class MiniMetro {
 
             // 2. GUI: the window from the builder + the renderer
             MiniMetroGUI frame = new MiniMetroGUI();
-            Renderer renderer = new Renderer(world, mechanics);
+            Renderer renderer = new Renderer(world, mechanics, frame);
 
             // 3. Put the renderer inside GamePanel, on top of the background map
             JPanel gamePanel = frame.getGamePanel();
@@ -38,6 +38,7 @@ public class MiniMetro {
             frame.getLine1Button().addActionListener(e -> renderer.setSelectedLine(0));
             frame.getLine2Button().addActionListener(e -> renderer.setSelectedLine(1));
             frame.getLine3Button().addActionListener(e -> renderer.setSelectedLine(2));
+            frame.getPauseButton().addActionListener(e -> renderer.pause());
 
             // 5. Show the window
             frame.setLocationRelativeTo(null);

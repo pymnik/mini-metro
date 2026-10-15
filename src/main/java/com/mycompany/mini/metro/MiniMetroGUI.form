@@ -71,14 +71,8 @@
                               <Component id="Line1" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="AddTrain" min="-2" pref="115" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="RemoveTrain" min="-2" pref="114" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="Line2" alignment="0" min="-2" pref="234" max="-2" attributes="0"/>
                                       <Component id="Line3" alignment="0" min="-2" pref="234" max="-2" attributes="0"/>
-                                      <Component id="Statistics" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
@@ -92,42 +86,43 @@
                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                           <Component id="Titel" max="32767" attributes="0"/>
                       </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="Simulation" min="-2" pref="69" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="Resume" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="Restart" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="Speed" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="Lines" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Statistics" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Time" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="Delivered" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
+                                      <Component id="Waiting" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="OnTrains" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="AvgTrip" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="NewPassenger" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="MostCrowded" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Time" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="Delivered" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
-                              <Component id="Waiting" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="OnTrains" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="AvgTrip" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="NewPassenger" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="MostCrowded" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                          <Component id="Simulation" min="-2" pref="69" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="Resume" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Restart" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Speed2x" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="Lines" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="8" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -142,7 +137,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Resume" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Restart" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Speed2x" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Speed" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="Lines" min="-2" max="-2" attributes="0"/>
@@ -152,14 +147,9 @@
                   <Component id="Line2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="Line3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="AddTrain" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="RemoveTrain" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="ClearLine" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="111" max="32767" attributes="0"/>
                   <Component id="Statistics" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="Time" min="-2" max="-2" attributes="0"/>
@@ -175,7 +165,7 @@
                   <Component id="NewPassenger" min="-2" pref="16" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="MostCrowded" min="-2" pref="16" max="-2" attributes="0"/>
-                  <EmptySpace pref="171" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -199,7 +189,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="Resume">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Resume"/>
+            <Property name="label" type="java.lang.String" value="Pause"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ResumeActionPerformed"/>
@@ -210,7 +200,7 @@
             <Property name="text" type="java.lang.String" value="Restart"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="Speed2x">
+        <Component class="javax.swing.JButton" name="Speed">
           <Properties>
             <Property name="text" type="java.lang.String" value="Speed 2x"/>
           </Properties>
@@ -269,23 +259,13 @@
             <Property name="iconTextGap" type="int" value="5"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="AddTrain">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Add Train"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="RemoveTrain">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Remove Train"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RemoveTrainActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="ClearLine">
           <Properties>
             <Property name="text" type="java.lang.String" value="Clear Line"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClearLineActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="Statistics">
           <Properties>
