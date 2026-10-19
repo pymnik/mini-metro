@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,6 +46,11 @@ public class Renderer extends JPanel {
         });
     }
 
+    public void setGame(WorldState world, Mechanics mechanics) {
+        this.world = world;
+        this.mechanics = mechanics;
+    }
+
     public void handleClick(int x, int y) {
         mechanics.addStationToLine(this.selectedLine, mechanics.findStationAt(x, y));
     }
@@ -54,8 +58,8 @@ public class Renderer extends JPanel {
     public void setSelectedLine(int i) {
         this.selectedLine = i;
     }
-    
-    public void clearLine(){
+
+    public void clearLine() {
         mechanics.clearSelectedLine(selectedLine);
     }
 
@@ -63,16 +67,16 @@ public class Renderer extends JPanel {
         mechanics.pause();
         if (mechanics.getPause()) {
             frame.getPauseButton().setText("Resume");
-        } else{
+        } else {
             frame.getPauseButton().setText("Pause");
         }
     }
-    
-    public void speed2x(){
+
+    public void speed2x() {
         mechanics.speed2x();
-        if(mechanics.getSpeed2x()){
+        if (mechanics.getSpeed2x()) {
             frame.getSpeedButton().setText("Speed 2x");
-        } else{
+        } else {
             frame.getSpeedButton().setText("Speed 1x");
         }
     }

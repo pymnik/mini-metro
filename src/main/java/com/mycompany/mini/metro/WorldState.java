@@ -103,9 +103,9 @@ public class WorldState {
 
     public void clearSelectedLine(int lineIndex) {
         MetroLine line = lines.get(lineIndex);
-        Train train = trainMap.remove(line);   // returns the removed train (or null)
+        Train train = trainMap.remove(line);
         if (train != null) {
-            trains.remove(train);              // remove by object, not index
+            trains.remove(train);
         }
         line.removeTrain();
         line.clearRoute();

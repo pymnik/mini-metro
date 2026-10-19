@@ -27,7 +27,6 @@ public class Mechanics {
     private Random random = new Random();
     private boolean pause = false;
     private boolean speed2x = false;
-    private boolean restart = false;
 
     public Mechanics(WorldState world) {
         this.world = world;
