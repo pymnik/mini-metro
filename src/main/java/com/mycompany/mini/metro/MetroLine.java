@@ -33,8 +33,8 @@ public class MetroLine {
         trains.add(train);
     }
 
-    public void removeTrain(Train train) {
-        trains.remove(train);
+    public void removeTrain() {
+        trains.clear();
     }
 
     public void rewriteRoute(List<Station> route) {

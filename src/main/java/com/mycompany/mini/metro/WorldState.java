@@ -100,4 +100,14 @@ public class WorldState {
             toAddStations.removeFirst();
         }
     }
+
+    public void clearSelectedLine(int lineIndex) {
+        MetroLine line = lines.get(lineIndex);
+        Train train = trainMap.remove(line);   // returns the removed train (or null)
+        if (train != null) {
+            trains.remove(train);              // remove by object, not index
+        }
+        line.removeTrain();
+        line.clearRoute();
+    }
 }

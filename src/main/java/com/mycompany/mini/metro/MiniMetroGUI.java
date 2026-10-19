@@ -316,6 +316,10 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     public javax.swing.JButton getSpeedButton() {
         return Speed;
     }
+    
+    public javax.swing.JButton getClearLineButton() {
+        return ClearLine;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AvgTrip;

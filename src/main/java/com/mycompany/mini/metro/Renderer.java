@@ -54,6 +54,10 @@ public class Renderer extends JPanel {
     public void setSelectedLine(int i) {
         this.selectedLine = i;
     }
+    
+    public void clearLine(){
+        mechanics.clearSelectedLine(selectedLine);
+    }
 
     public void pause() {
         mechanics.pause();

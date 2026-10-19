@@ -203,7 +203,6 @@
         <Component class="javax.swing.JButton" name="Speed">
           <Properties>
             <Property name="text" type="java.lang.String" value="Speed 1x"/>
-            <Property name="actionCommand" type="java.lang.String" value="Speed 1x"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Lines">

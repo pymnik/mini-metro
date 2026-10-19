@@ -259,4 +259,8 @@ public class Mechanics {
     public boolean getSpeed2x(){
         return speed2x;
     }
+    
+    public void clearSelectedLine(int line){
+        world.clearSelectedLine(line);
+    }
 }
