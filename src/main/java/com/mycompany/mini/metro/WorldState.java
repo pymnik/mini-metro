@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 public class WorldState {
 
+    private List<Station> toAddStations = new ArrayList<>();
     private List<Station> stations = new ArrayList<>();
     private List<MetroLine> lines = new ArrayList<>();
     private List<Train> trains = new ArrayList<>();
@@ -22,10 +23,21 @@ public class WorldState {
     private long elapsed = System.nanoTime();
 
     public WorldState() {
-        stations.add(new Station(StationShape.DIAMOND, "AMS", 580, 400));
-        stations.add(new Station(StationShape.CIRCLE, "EIND", 745, 650));
-        stations.add(new Station(StationShape.TRIANGLE, "GRO", 900, 150));
-        stations.add(new Station(StationShape.SQUARE, "ARN", 800, 500));
+        stations.add(new Station(StationShape.CIRCLE, "HAG", 460, 480));
+        stations.add(new Station(StationShape.SQUARE, "RTM", 520, 520));
+        stations.add(new Station(StationShape.TRIANGLE, "AMS", 580, 400));
+        stations.add(new Station(StationShape.DIAMOND, "GRO", 900, 150));
+
+        toAddStations.add(new Station(StationShape.CIRCLE, "BRE", 580, 610));
+        toAddStations.add(new Station(StationShape.TRIANGLE, "ZWL", 830, 350));
+        toAddStations.add(new Station(StationShape.SQUARE, "UTR", 660, 460));
+        toAddStations.add(new Station(StationShape.CIRCLE, "TLB", 660, 620));
+        toAddStations.add(new Station(StationShape.CIRCLE, "EIN", 745, 650));
+        toAddStations.add(new Station(StationShape.CIRCLE, "ARN", 800, 520));
+        toAddStations.add(new Station(StationShape.DIAMOND, "MST", 800, 850));
+        toAddStations.add(new Station(StationShape.CIRCLE, "ENS", 950, 450));
+        toAddStations.add(new Station(StationShape.TRIANGLE, "ANT", 530, 720));
+
         for (int i = 0; i < 3; i++) {
             lines.add(new MetroLine(i));
         }
@@ -60,8 +72,8 @@ public class WorldState {
     public List<Train> getTrains() {
         return trains;
     }
-    
-    public Train getTrainByLine(MetroLine line){
+
+    public Train getTrainByLine(MetroLine line) {
         return trainMap.get(line);
     }
 
@@ -79,5 +91,13 @@ public class WorldState {
 
     public void changeElapsed(double dt) {
         this.elapsed += dt;
+    }
+
+    public void addActiveStation() {
+        if (toAddStations.size() > 0) {
+            System.out.println(toAddStations.getFirst());
+            stations.add(toAddStations.getFirst());
+            toAddStations.removeFirst();
+        }
     }
 }

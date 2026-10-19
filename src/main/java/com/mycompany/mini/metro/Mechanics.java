@@ -16,6 +16,8 @@ import java.util.Iterator;
 public class Mechanics {
 
     private double spawnInterval = 2.0;
+    private double stationSpawnInterval = 17.0;
+    private double stationSpawnTimer = 13.0;
     private double spawnTimer = 1.0;
     private int stationCapacity = 6;
     private int trainSpeed = 60;
@@ -44,8 +46,14 @@ public class Mechanics {
         spawnTimer -= dt;
         while (spawnTimer <= 0) {
             spawnPassenger();
-            spawnInterval *= 0.999; //spawn faster overtime
+            spawnInterval *= 0.995; //spawn faster overtime
             spawnTimer += spawnInterval;
+        }
+        
+        stationSpawnTimer -= dt;
+        while (stationSpawnTimer <= 0) {
+            world.addActiveStation();
+            stationSpawnTimer += stationSpawnInterval;
         }
 
         for (Station station : stations) {
@@ -81,7 +89,8 @@ public class Mechanics {
             return station.getName() + " is already on line " + (lineIndex + 1) + ".";
         }
         line.addStation(station);
-        if (world.getTrainByLine(line) != null) {
+        Train trainOfLine = world.getTrainByLine(line);
+        if (trainOfLine != null && trainOfLine.getDirection()) { //if dir is true, it is moving towards the newly added station
             world.getTrainByLine(line).addLastStation(station);
         }
 
