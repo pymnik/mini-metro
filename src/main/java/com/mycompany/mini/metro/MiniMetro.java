@@ -60,6 +60,9 @@ public class MiniMetro {
                     double dt = (now - last) / 1_000_000_000.0;
                     last = now;
                     mechanics.update(dt);
+                    frame.getTimeLabel().setText(Statistics.formatTime(world.getElapsed()));
+                    frame.getDeliveredLabel().setText("" + world.getStatistics().getDelivered());
+                    frame.getWaitingLabel().setText("" + world.getStatistics().getWaiting());
                     renderer.repaint();
                 }
             });

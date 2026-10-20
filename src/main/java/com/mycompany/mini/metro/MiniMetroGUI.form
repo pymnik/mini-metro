@@ -109,13 +109,23 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="Statistics" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Time" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Component id="Delivered" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
-                                      <Component id="Waiting" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <Component id="OnTrains" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="AvgTrip" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="NewPassenger" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="MostCrowded" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="Time" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <Component id="Delivered" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
+                                              <Component id="Waiting" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Component id="OnTrains" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="MostCrowded" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="mostCrowdedLabel" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <Component id="onTrainsLabel" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <Component id="waitingLabel" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <Component id="deliveredLabel" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <Component id="timeLabel" min="-2" pref="37" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -152,20 +162,31 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Statistics" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="Time" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Time" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="timeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="Delivered" min="-2" pref="16" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Delivered" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="deliveredLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="Waiting" min="-2" pref="16" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Waiting" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="waitingLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="OnTrains" min="-2" pref="16" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="AvgTrip" min="-2" pref="16" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="NewPassenger" min="-2" pref="16" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="MostCrowded" min="-2" pref="16" max="-2" attributes="0"/>
-                  <EmptySpace pref="182" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="OnTrains" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="onTrainsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="MostCrowded" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="mostCrowdedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="226" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -310,22 +331,6 @@
             <Property name="text" type="java.lang.String" value="On trains"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="AvgTrip">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="66" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Avg. trip"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="NewPassenger">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="66" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="New passenger"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="MostCrowded">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -333,6 +338,16 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Most crowded"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="timeLabel">
+        </Component>
+        <Component class="javax.swing.JLabel" name="deliveredLabel">
+        </Component>
+        <Component class="javax.swing.JLabel" name="waitingLabel">
+        </Component>
+        <Component class="javax.swing.JLabel" name="onTrainsLabel">
+        </Component>
+        <Component class="javax.swing.JLabel" name="mostCrowdedLabel">
         </Component>
       </SubComponents>
     </Container>

@@ -54,9 +54,12 @@ public class MiniMetroGUI extends javax.swing.JFrame {
         Delivered = new javax.swing.JLabel();
         Waiting = new javax.swing.JLabel();
         OnTrains = new javax.swing.JLabel();
-        AvgTrip = new javax.swing.JLabel();
-        NewPassenger = new javax.swing.JLabel();
         MostCrowded = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
+        deliveredLabel = new javax.swing.JLabel();
+        waitingLabel = new javax.swing.JLabel();
+        onTrainsLabel = new javax.swing.JLabel();
+        mostCrowdedLabel = new javax.swing.JLabel();
         GamePanel = 
         GamePanel 
 
@@ -92,7 +95,6 @@ public class MiniMetroGUI extends javax.swing.JFrame {
         Restart.setText("Restart");
 
         Speed.setText("Speed 1x");
-        Speed.setActionCommand("Speed 1x");
 
         Lines.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         Lines.setText("Lines:");
@@ -137,12 +139,6 @@ public class MiniMetroGUI extends javax.swing.JFrame {
         OnTrains.setForeground(new java.awt.Color(102, 102, 102));
         OnTrains.setText("On trains");
 
-        AvgTrip.setForeground(new java.awt.Color(102, 102, 102));
-        AvgTrip.setText("Avg. trip");
-
-        NewPassenger.setForeground(new java.awt.Color(102, 102, 102));
-        NewPassenger.setText("New passenger");
-
         MostCrowded.setForeground(new java.awt.Color(102, 102, 102));
         MostCrowded.setText("Most crowded");
 
@@ -186,13 +182,20 @@ public class MiniMetroGUI extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Statistics)
-                                    .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Delivered, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Waiting, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(OnTrains)
-                                    .addComponent(AvgTrip)
-                                    .addComponent(NewPassenger)
-                                    .addComponent(MostCrowded))))
+                                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Delivered, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Waiting, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(OnTrains)
+                                            .addComponent(MostCrowded))
+                                        .addGap(43, 43, 43)
+                                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(mostCrowdedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(onTrainsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(waitingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(deliveredLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -221,20 +224,26 @@ public class MiniMetroGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Statistics)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Time)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Time)
+                    .addComponent(timeLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Delivered, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Delivered, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deliveredLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Waiting, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Waiting, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(waitingLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(OnTrains, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OnTrains, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(onTrainsLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AvgTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NewPassenger, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MostCrowded, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MostCrowded, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mostCrowdedLabel))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         GamePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -324,9 +333,28 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     public javax.swing.JButton getRestartButton() {
         return Restart;
     }
+    
+    public javax.swing.JLabel getTimeLabel(){
+        return timeLabel;
+    }
+    
+    public javax.swing.JLabel getDeliveredLabel(){
+        return deliveredLabel;
+    }
+    
+    public javax.swing.JLabel getWaitingLabel(){
+        return waitingLabel;
+    }
+    
+    public javax.swing.JLabel getMostCrowdedLabel(){
+        return mostCrowdedLabel;
+    }
+    
+    public javax.swing.JLabel getOnTrainsLabel(){
+        return onTrainsLabel;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AvgTrip;
     private javax.swing.JButton ClearLine;
     private javax.swing.JLabel Delivered;
     private javax.swing.JPanel GamePanel;
@@ -336,7 +364,6 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     private javax.swing.JLabel Lines;
     private javax.swing.JPanel MenuPanel;
     private javax.swing.JLabel MostCrowded;
-    private javax.swing.JLabel NewPassenger;
     private javax.swing.JLabel OnTrains;
     private javax.swing.JButton Restart;
     private javax.swing.JButton Resume;
@@ -347,5 +374,10 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     private javax.swing.JLabel Titel;
     private javax.swing.JLabel Waiting;
     private javax.swing.ButtonGroup buttonGroupLines;
+    private javax.swing.JLabel deliveredLabel;
+    private javax.swing.JLabel mostCrowdedLabel;
+    private javax.swing.JLabel onTrainsLabel;
+    private javax.swing.JLabel timeLabel;
+    private javax.swing.JLabel waitingLabel;
     // End of variables declaration//GEN-END:variables
 }
