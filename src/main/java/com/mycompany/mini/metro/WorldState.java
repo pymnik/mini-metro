@@ -22,8 +22,8 @@ public class WorldState {
     private boolean gameOver = false;
     private double elapsed = 0;
     private Statistics statistics = new Statistics();
-    
-    public Statistics getStatistics(){
+
+    public Statistics getStatistics() {
         return statistics;
     }
 

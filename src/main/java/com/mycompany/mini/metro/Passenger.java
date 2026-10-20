@@ -23,17 +23,17 @@ public class Passenger {
     public StationShape getDestination() {
         return this.destination;
     }
-    
-    public Station getIntermediate(){
+
+    public Station getIntermediate() {
         return intermediate;
     }
-    
+
     public void setIntermediate(Station st) {
         this.intermediate = st;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         String result = "Passenger of shape " + this.getDestination();
         return result;
     }

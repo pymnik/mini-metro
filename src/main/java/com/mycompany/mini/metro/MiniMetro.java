@@ -16,9 +16,10 @@ import javax.swing.Timer;
  * @author nikit
  */
 public class MiniMetro {
+
     private static WorldState world;
     private static Mechanics mechanics;
-    
+
     public static void main() {
 
         SwingUtilities.invokeLater(() -> {
@@ -26,7 +27,7 @@ public class MiniMetro {
 
             world = new WorldState();
             mechanics = new Mechanics(world);
-            
+
             MiniMetroGUI frame = new MiniMetroGUI();
             Renderer renderer = new Renderer(world, mechanics, frame);
 

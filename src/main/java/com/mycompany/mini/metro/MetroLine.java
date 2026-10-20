@@ -48,8 +48,8 @@ public class MetroLine {
     public List<Station> getRoute() {
         return this.route;
     }
-    
-    public Station getOriginStation(){
+
+    public Station getOriginStation() {
         return route.getFirst();
     }
 
@@ -59,5 +59,9 @@ public class MetroLine {
         } else {
             return false;
         }
+    }
+
+    public Train getTrain() {
+        return trains.getFirst();
     }
 }

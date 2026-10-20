@@ -39,8 +39,8 @@ public class Train {
     public List<Station> getNextStations() {
         return nextStations;
     }
-    
-    public void addLastStation(Station station){
+
+    public void addLastStation(Station station) {
         nextStations.add(station);
     }
 
@@ -83,8 +83,8 @@ public class Train {
     public void flipDirection() {
         direction = !direction;
     }
-    
-    public List<Passenger> getPassengers(){
+
+    public List<Passenger> getPassengers() {
         return passengers;
     }
 }

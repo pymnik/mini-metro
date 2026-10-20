@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
-
-
 public class Mechanics {
 
     private double spawnInterval = 2.0;
@@ -45,13 +43,13 @@ public class Mechanics {
 
         world.changeElapsed(dt);
         spawnTimer -= dt;
-        
+
         while (spawnTimer <= 0) {
             spawnPassenger();
             spawnInterval *= 0.995; //spawn faster overtime
             spawnTimer += spawnInterval;
         }
-        
+
         stationSpawnTimer -= dt;
         while (stationSpawnTimer <= 0) {
             world.addActiveStation();
@@ -68,7 +66,7 @@ public class Mechanics {
             updateTrain(train, dt);
         }
     }
-    
+
     public void spawnPassenger() {
         Station station = stations.get(random.nextInt(stations.size()));
         StationShape[] shapes = StationShape.values();
@@ -250,32 +248,44 @@ public class Mechanics {
         }
         return findTransfer(p, train) != null;         // find a transfer
     }
-    
-    public void pause(){
+
+    public void pause() {
         this.pause = !this.pause;
-        
+
     }
-    
-    public boolean getPause(){
+
+    public boolean getPause() {
         return pause;
     }
-    
-    public void speed2x(){
+
+    public void speed2x() {
         this.speed2x = !this.speed2x;
     }
-    
-    public boolean getSpeed2x(){
+
+    public boolean getSpeed2x() {
         return speed2x;
     }
-    
-    public void clearSelectedLine(int line){
+
+    public void clearSelectedLine(int line) {
+        Train train = world.getLineById(line).getTrain();
+        Station drop = train.getNextStations().getFirst();
+        List<Passenger> passengers = new ArrayList<>(train.getPassengers());
+        for (Passenger p : passengers) {
+            train.dropOff(p);   // take everyone off the train
+            world.getStatistics().removeOnTrains();
+            if (p.getDestination() == drop.getShape()) {
+                world.getStatistics().addDelivered();
+            } else {
+                drop.addPassenger(p);
+            }
+        }
         world.clearSelectedLine(line);
     }
-    
-    public void findMostCrowded(){
+
+    public void findMostCrowded() {
         Station mostCrowded = world.getStations().getFirst();
-        for(Station station : world.getStations()){
-            if(station.getWaiting().size() > mostCrowded.getWaiting().size()){
+        for (Station station : world.getStations()) {
+            if (station.getWaiting().size() > mostCrowded.getWaiting().size()) {
                 mostCrowded = station;
             }
         }

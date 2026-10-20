@@ -296,7 +296,7 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Line1ActionPerformed
 
     private void ClearLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearLineActionPerformed
-        
+
     }//GEN-LAST:event_ClearLineActionPerformed
 
     /**
@@ -317,40 +317,40 @@ public class MiniMetroGUI extends javax.swing.JFrame {
     public javax.swing.JToggleButton getLine3Button() {
         return Line3;
     }
-    
+
     public javax.swing.JButton getPauseButton() {
         return Resume;
     }
-    
+
     public javax.swing.JButton getSpeedButton() {
         return Speed;
     }
-    
+
     public javax.swing.JButton getClearLineButton() {
         return ClearLine;
     }
-    
+
     public javax.swing.JButton getRestartButton() {
         return Restart;
     }
-    
-    public javax.swing.JLabel getTimeLabel(){
+
+    public javax.swing.JLabel getTimeLabel() {
         return timeLabel;
     }
-    
-    public javax.swing.JLabel getDeliveredLabel(){
+
+    public javax.swing.JLabel getDeliveredLabel() {
         return deliveredLabel;
     }
-    
-    public javax.swing.JLabel getWaitingLabel(){
+
+    public javax.swing.JLabel getWaitingLabel() {
         return waitingLabel;
     }
-    
-    public javax.swing.JLabel getMostCrowdedLabel(){
+
+    public javax.swing.JLabel getMostCrowdedLabel() {
         return mostCrowdedLabel;
     }
-    
-    public javax.swing.JLabel getOnTrainsLabel(){
+
+    public javax.swing.JLabel getOnTrainsLabel() {
         return onTrainsLabel;
     }
 
