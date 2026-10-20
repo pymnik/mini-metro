@@ -46,7 +46,7 @@ public class Mechanics {
 
         while (spawnTimer <= 0) {
             spawnPassenger();
-            spawnInterval *= 0.995; //spawn faster overtime
+            spawnInterval *= 0.996; //spawn faster overtime
             spawnTimer += spawnInterval;
         }
 
