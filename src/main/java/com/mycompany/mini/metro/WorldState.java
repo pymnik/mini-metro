@@ -20,7 +20,12 @@ public class WorldState {
     private List<Train> trains = new ArrayList<>();
     private HashMap<MetroLine, Train> trainMap = new HashMap<>();
     private boolean gameOver = false;
-    private long elapsed = System.nanoTime();
+    private double elapsed = 0;
+    private Statistics statistics = new Statistics();
+    
+    public Statistics getStatistics(){
+        return statistics;
+    }
 
     public WorldState() {
         stations.add(new Station(StationShape.CIRCLE, "HAG", 460, 480));
@@ -85,7 +90,7 @@ public class WorldState {
         this.gameOver = true;
     }
 
-    public long getElapsed() {
+    public double getElapsed() {
         return this.elapsed;
     }
 

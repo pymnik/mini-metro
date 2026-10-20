@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
+
+
 public class Mechanics {
 
     private double spawnInterval = 2.0;
@@ -43,6 +45,7 @@ public class Mechanics {
 
         world.changeElapsed(dt);
         spawnTimer -= dt;
+        
         while (spawnTimer <= 0) {
             spawnPassenger();
             spawnInterval *= 0.995; //spawn faster overtime
@@ -77,6 +80,7 @@ public class Mechanics {
             destination = shapes[random.nextInt(shapes.length)];
         }
         station.addPassenger(new Passenger(destination));
+        world.getStatistics().addWaiting();
     }
 
     public String addStationToLine(int lineIndex, Station station) {
@@ -174,6 +178,7 @@ public class Mechanics {
                 p.setIntermediate(findTransfer(p, train));
                 train.pickUp(p);
                 station.removePassenger(p);
+                world.getStatistics().removeWaiting();
             }
         }
     }
@@ -186,6 +191,7 @@ public class Mechanics {
                 Passenger p = iterator.next();
                 if (p.getDestination().equals(station.getShape())) {
                     train.dropOff(p);
+                    world.getStatistics().addDelivered();
                 } else if (p.getIntermediate() != null) {
                     if (p.getIntermediate().equals(station)) {
                         station.addPassenger(p);
