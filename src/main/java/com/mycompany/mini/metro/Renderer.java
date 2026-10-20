@@ -103,6 +103,13 @@ public class Renderer extends JPanel {
         drawPassengers(g2);
         drawTrains(g2);
         drawPassengerTrain(g2);
+
+        frame.getTimeLabel().setText(Statistics.formatTime(world.getElapsed()));
+        frame.getDeliveredLabel().setText(world.getStatistics().getDelivered() + "");
+        frame.getWaitingLabel().setText(world.getStatistics().getWaiting() + "");
+        frame.getOnTrainsLabel().setText(world.getStatistics().getOnTrains() + "");
+        mechanics.findMostCrowded();
+        frame.getMostCrowdedLabel().setText(world.getStatistics().getMostCrowded() + "");
     }
 
     private void drawLines(Graphics2D g2) {

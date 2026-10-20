@@ -67,9 +67,8 @@ public class Mechanics {
         for (Train train : world.getTrains()) {
             updateTrain(train, dt);
         }
-
     }
-
+    
     public void spawnPassenger() {
         Station station = stations.get(random.nextInt(stations.size()));
         StationShape[] shapes = StationShape.values();
@@ -179,6 +178,7 @@ public class Mechanics {
                 train.pickUp(p);
                 station.removePassenger(p);
                 world.getStatistics().removeWaiting();
+                world.getStatistics().addOnTrains();
             }
         }
     }
@@ -192,11 +192,14 @@ public class Mechanics {
                 if (p.getDestination().equals(station.getShape())) {
                     train.dropOff(p);
                     world.getStatistics().addDelivered();
+                    world.getStatistics().removeOnTrains();
                 } else if (p.getIntermediate() != null) {
                     if (p.getIntermediate().equals(station)) {
                         station.addPassenger(p);
                         train.dropOff(p);
                         p.setIntermediate(null);
+                        world.getStatistics().removeOnTrains();
+                        world.getStatistics().addWaiting();
                     }
                 }
             }
@@ -267,5 +270,15 @@ public class Mechanics {
     
     public void clearSelectedLine(int line){
         world.clearSelectedLine(line);
+    }
+    
+    public void findMostCrowded(){
+        Station mostCrowded = world.getStations().getFirst();
+        for(Station station : world.getStations()){
+            if(station.getWaiting().size() > mostCrowded.getWaiting().size()){
+                mostCrowded = station;
+            }
+        }
+        world.getStatistics().setMostCrowded(mostCrowded.getName());
     }
 }
