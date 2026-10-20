@@ -53,7 +53,9 @@ public class Renderer extends JPanel {
     }
 
     public void handleClick(int x, int y) {
-        mechanics.addStationToLine(this.selectedLine, mechanics.findStationAt(x, y));
+        if (mechanics.findStationAt(x, y) != null) {
+            mechanics.addStationToLine(this.selectedLine, mechanics.findStationAt(x, y));
+        }
     }
 
     public void setSelectedLine(int i) {
@@ -129,17 +131,17 @@ public class Renderer extends JPanel {
                 int bY = b.getY();
                 for (int j = 0; j < lines.size(); j++) {
                     List<Station> jthStations = lines.get(j).getRoute();
-                    if(jthStations.contains(a) && jthStations.contains(b)){
-                        if(jthStations.indexOf(a) - 1 == jthStations.indexOf(b) || jthStations.indexOf(b) - 1 == jthStations.indexOf(a)){
+                    if (jthStations.contains(a) && jthStations.contains(b)) {
+                        if (jthStations.indexOf(a) - 1 == jthStations.indexOf(b) || jthStations.indexOf(b) - 1 == jthStations.indexOf(a)) {
                             //if a and b are consequent stations
-                            if(lines.get(j) == world.getLineById(0)){
+                            if (lines.get(j) == world.getLineById(0)) {
                                 aX -= 3;
                                 aY -= 3;
                                 bX -= 3;
                                 bY -= 3;
-                            } else if(lines.get(j) == world.getLineById(1)){
+                            } else if (lines.get(j) == world.getLineById(1)) {
                                 continue;
-                            } else{
+                            } else {
                                 aX += 3;
                                 aY += 3;
                                 bX += 3;
