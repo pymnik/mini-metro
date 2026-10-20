@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.awt.geom.*;
 import javax.swing.*;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -81,19 +82,19 @@ public class Renderer extends JPanel {
         }
     }
 
-    // This paints the scene each time repaint() is called
+    //This paints the scene each time repaint() is called
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g); // erase previous picture
+        super.paintComponent(g); //erase previous picture
 
         Graphics2D g2 = (Graphics2D) g;
-        // smooth edges for shapes and lines
+        //smooth edges for lines and shapes
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        // smooth text
+        //smooth text
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        // draw strokes at their exact (decimal) position instead of rounding to pixels
+        //draw strokes at their exact position without rounding
         g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,
                 RenderingHints.VALUE_STROKE_PURE);
 
@@ -113,8 +114,34 @@ public class Renderer extends JPanel {
             for (int i = 0; i < line.getRoute().size() - 1; i++) {
                 Station a = line.getRoute().get(i);
                 Station b = line.getRoute().get(i + 1);
-                g2.drawLine(a.getX(), a.getY(),
-                        b.getX(), b.getY());
+                List<MetroLine> lines = new ArrayList<>(world.getLines());
+                lines.remove(line); //to only check other lines
+                int aX = a.getX();
+                int aY = a.getY();
+                int bX = b.getX();
+                int bY = b.getY();
+                for (int j = 0; j < lines.size(); j++) {
+                    List<Station> jthStations = lines.get(j).getRoute();
+                    if(jthStations.contains(a) && jthStations.contains(b)){
+                        if(jthStations.indexOf(a) - 1 == jthStations.indexOf(b) || jthStations.indexOf(b) - 1 == jthStations.indexOf(a)){
+                            //if a and b are consequent stations
+                            if(lines.get(j) == world.getLineById(0)){
+                                aX -= 3;
+                                aY -= 3;
+                                bX -= 3;
+                                bY -= 3;
+                            } else if(lines.get(j) == world.getLineById(1)){
+                                continue;
+                            } else{
+                                aX += 3;
+                                aY += 3;
+                                bX += 3;
+                                bY += 3;
+                            }
+                        }
+                    }
+                }
+                g2.drawLine(aX, aY, bX, bY);
             }
         }
     }
